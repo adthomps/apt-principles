@@ -1,0 +1,10 @@
+{
+  "name": "apt-principles",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-apt-principles.mjs",
+    "check": "npm run validate"
+  }
+}
