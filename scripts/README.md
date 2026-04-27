@@ -22,7 +22,10 @@ From inside `apt-principles`:
 
 ```bash
 npm run validate
+npm run run-all-checks
 ```
+
+`run-all-checks` runs canonical validation, the project-profile sweep, and selected sibling repo quality commands (`lint`, `typecheck`, `test`) before printing a compact pass/fail summary.
 
 ## CLI Options
 

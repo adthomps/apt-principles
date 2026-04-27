@@ -4,7 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "run-all-checks": "node scripts/run-all-checks.mjs",
+    "scaffold:audit-report": "node scripts/scaffold-apt-audit-report.mjs",
+    "sweep:project-profiles": "node scripts/sweep-project-profiles.mjs",
     "validate": "node scripts/validate-apt-principles.mjs",
-    "check": "npm run validate"
+    "check": "npm run validate",
+    "validate:project-profile": "node scripts/validate-project-profile.mjs --repo-root ."
   }
 }
