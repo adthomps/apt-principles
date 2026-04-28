@@ -26,17 +26,17 @@ status: draft
 | Security | 1 | 4 | 0 | 0 |
 | AI | 1 | 3 | 0 | 1 |
 | Execution | 5 | 0 | 0 | 0 |
-| Knowledge | 2 | 3 | 0 | 0 |
+| Knowledge | 3 | 2 | 0 | 0 |
 | Operations | 0 | 5 | 0 | 0 |
 | Quality | 1 | 4 | 0 | 0 |
 | Release | 0 | 5 | 0 | 0 |
-| System Standards | 4 | 1 | 0 | 0 |
+| System Standards | 3 | 2 | 0 | 0 |
 
 ## Findings by Severity
 
 - Blocking: 0
 - Major: 6
-- Minor: 13
+- Minor: 14
 - Other: 0
 
 ## Findings by APT Layer
@@ -53,13 +53,14 @@ status: draft
 - Operations: 1
 - Release / Knowledge: 1
 - System Standards: 1
+- System Standards / Release: 1
 
 ## Repo Status
 
 | Repo | Status | Notes |
 |---|---|---|
 | applied-practical-thinking | passed | Minor: Local APT adoption/profile layer is now present and aligned to canonical doctrine; keep it synchronized with future principle updates. / Major: The working tree already contains modified generated APT publication artifacts. That is acceptable if intentional, but audit/remediation work must not overwrite or normalize them accidentally. |
-| apt-coach | passed | Major: D1 dev and production currently point to the same physical database. The README correctly warns that migrations and writes are production-impacting, but this remains the largest operational risk. / Minor: Local APT adoption/profile layer is now present and linked to canonical doctrine; keep it synchronized with domain and operating changes. |
+| apt-coach | passed | Major: D1 dev and production currently point to the same physical database. The README correctly warns that migrations and writes are production-impacting, but this remains the largest operational risk. / Minor: Local APT adoption/profile layer is present, linked to canonical doctrine, and validated in CI. |
 | apt-dream-to-reality | passed | Minor: Local APT adoption/profile layer is now present and aligned to canonical doctrine; keep it current as workflow and maturity evolve. / Major: AI prompt source of truth is split between Markdown prompt files and an embedded TypeScript registry. Versions differ for generate-spec (1.1.0 in registry vs 1.0.0 in Markdown), creating drift risk. |
 | apt-novel-reviewer | passed | Minor: Operational readiness evidence is lighter than implementation evidence for a desktop app with native and local-AI dependencies. / Minor: Automated coverage is strongest in packages/lib, while desktop UI and packaging paths still rely mostly on manual validation. |
 | apt-payment-rpc-api | passed | Major: Workspace root lacks explicit validation scripts used by APT (e.g. check:design, test:contracts, typecheck). Running pnpm run check:design at the repo root failed with: "Missing script: check:design". |
@@ -75,7 +76,7 @@ status: draft
 ### apt-coach
 
 - Major / Security / Operations: D1 dev and production currently point to the same physical database. The README correctly warns that migrations and writes are production-impacting, but this remains the largest operational risk.
-- Minor / Knowledge: Local APT adoption/profile layer is now present and linked to canonical doctrine; keep it synchronized with domain and operating changes.
+- Minor / Knowledge: Local APT adoption/profile layer is present, linked to canonical doctrine, and validated in CI.
 
 ### apt-dream-to-reality
 
@@ -120,8 +121,8 @@ status: draft
 - applied-practical-thinking: Maintain schema-compatible docs/apt/references/project-profile.json and enforce validation in CI.
 - applied-practical-thinking: Add a short AI adoption note covering prompt ownership, worker route boundaries, and human-review expectations.
 - apt-coach: Keep docs/apt/adoption.md and docs/apt/project-profile.md updated as constraints, maturity, and security posture evolve.
-- apt-coach: Maintain schema-compatible docs/apt/references/project-profile.json and enforce CI validation.
-- apt-coach: Expand adaptive coaching prompt documentation before treating AI guidance as showcase-ready.
+- apt-coach: Split dev/prod D1 databases when a production-safe replacement binding is available; until then, follow the temporary risk acceptance in docs/DECISION_LOG.md.
+- apt-coach: Resolve duplicate migration prefix 0013 in a migration-safe pass that first confirms which migrations are already applied remotely.
 - apt-dream-to-reality: Create docs/apt/adoption.md with adoption mode apply + showcase, canonical source, validation commands, and local exceptions.
 - apt-dream-to-reality: Create docs/apt/project-profile.md describing Dream to Reality as an APT planning/spec workflow example.
 - apt-dream-to-reality: Resolve prompt canonicality: either generate index.ts content from Markdown or mark Markdown files as reference-only and align versions.
