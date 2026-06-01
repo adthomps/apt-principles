@@ -1,0 +1,44 @@
+# Build and dependency artifacts
+node_modules/
+dist/
+build/
+.wrangler/
+.next/
+.turbo/
+.cache/
+.vite/
+.vercel/
+.netlify/
+.output/
+package-lock.json
+
+# Test artifacts
+coverage/
+playwright-cli/
+playwright-report/
+test-results/
+output/playwright/
+
+# Cross-repo generated public docs (applied-practical-thinking and downstream)
+apps/web/public/docs/apt/
+apps/web/data/generated/
+docs/apt/reports/static/
+
+# Generated validation and analysis outputs (prevent self-reference loops)
+reports/project-profile-validation-sweep-*.json
+reports/project-profile-validation-sweep-*.md
+reports/graphify-apt-gap-analysis-*.md
+
+# IDE and agent workspace config (not APT doctrine)
+.claude/
+MEMORY.md
+.env
+.env.*
+
+# Graphify working directories and local artifacts
+graphify-out/
+graphify-out/cache/
+graphify-out/cost.json
+graphify-out/manifest.json
+graphify-out/*.html
+.graphify-workspace/

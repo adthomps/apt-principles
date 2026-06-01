@@ -27,6 +27,16 @@ npm run run-all-checks
 
 `run-all-checks` runs canonical validation, the project-profile sweep, and selected sibling repo quality commands (`lint`, `typecheck`, `test`) before printing a compact pass/fail summary.
 
+Graphify workspace commands:
+
+```bash
+npm run graphify:check
+npm run graphify:apt
+npm run graphify:gaps
+```
+
+See `reports/GRAPHIFY_RUNBOOK.md` for setup, privacy boundaries, and output policy.
+
 ## CLI Options
 
 ```bash
@@ -54,6 +64,49 @@ To use this in another APT project such as `apt-coach` or `apt-dream-to-reality`
   }
 }
 ```
+
+## AI Readiness Validation
+
+`validate-ai-readiness.mjs` checks whether a project has the files and configuration needed for AI-assisted work. It scores the repo 0–4 against the APT AI Agent Readiness dimension and can scaffold missing files from apt-principles templates.
+
+The script lives in `apt-principles` and is **always run from `apt-principles`**. Use `--repo-root` to point at a downstream project.
+
+```bash
+# Validate this repo (run from apt-principles)
+npm run validate:ai
+
+# Validate a downstream project (run from apt-principles, target with --repo-root)
+node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach
+
+# JSON output
+node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach --json
+
+# Write Markdown report to the target repo's docs/apt/reports/
+node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach --report
+
+# Scaffold missing AI config into the target repo from apt-principles templates
+node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach --fix
+```
+
+If you are already inside a downstream repo and do not want to change directories:
+
+```bash
+# From inside apt-coach (Windows):
+node ..\apt-principles\scripts\validate-ai-readiness.mjs --repo-root .
+node ..\apt-principles\scripts\validate-ai-readiness.mjs --repo-root . --fix
+```
+
+Scores:
+
+| Score | Label | What's required |
+|-------|-------|----------------|
+| 0 | None | Nothing AI-related found |
+| 1 | Minimal | AGENTS.md with content |
+| 2 | Configured | + copilot-instructions.md + .github/agents/ with ≥1 agent |
+| 3 | Active | + ≥3 domain agents + skills + prompts + .claude/CLAUDE.md |
+| 4 | Optimizing | + valid agent frontmatter + .codex/ configured |
+
+`--fix` copies templates from apt-principles into the target project. It never overwrites existing files. Requires `--repo-root` (refuses to scaffold into apt-principles itself).
 
 ## Validation Scope
 

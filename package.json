@@ -4,11 +4,18 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "graphify:apt": "node scripts/graphify-apt-workspace.mjs",
+    "graphify:check": "node scripts/graphify-check.mjs",
+    "graphify:gaps": "node scripts/graphify-gap-report.mjs",
+    "graphify:install-openai": "node scripts/graphify-install-openai.mjs",
     "run-all-checks": "node scripts/run-all-checks.mjs",
     "scaffold:audit-report": "node scripts/scaffold-apt-audit-report.mjs",
     "sweep:project-profiles": "node scripts/sweep-project-profiles.mjs",
     "validate": "node scripts/validate-apt-principles.mjs",
     "check": "npm run validate",
-    "validate:project-profile": "node scripts/validate-project-profile.mjs --repo-root ."
+    "validate:project-profile": "node scripts/validate-project-profile.mjs --repo-root .",
+    "sync:check": "node scripts/check-agent-sync.mjs",
+    "validate:ai": "node scripts/validate-ai-readiness.mjs",
+    "validate:ai:fix": "node scripts/validate-ai-readiness.mjs --repo-root"
   }
 }

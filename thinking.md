@@ -105,10 +105,13 @@ Return:
 - `apt-principles.md`
 - `design.md`
 - `execution.md`
-- `checklists/thinking-review-checklist.md`
 - `examples/thinking/problem-framing-example.md`
 - `prompts/framework-review-prompt.md`
 - `prompts/apt-one-shot-build-prompt.md`
+
+## Related Checklists
+
+- `checklists/thinking-review-checklist.md`
 
 ## Summary
 

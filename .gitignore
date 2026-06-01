@@ -1,0 +1,8 @@
+graphify-out/
+.graphify-workspace/
+
+# Generated validation reports (created by npm run sweep:project-profiles and npm run graphify:gaps)
+reports/project-profile-validation-sweep-*.json
+reports/project-profile-validation-sweep-*.md
+reports/graphify-apt-gap-analysis-*.md
+

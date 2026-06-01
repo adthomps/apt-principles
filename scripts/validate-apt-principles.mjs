@@ -20,8 +20,11 @@ const CANONICAL_DOCTRINE_MARKDOWN = [
   "ai-agent-framework.md",
 ];
 
-const ACTIVE_AUDIT_MARKDOWN = [
-  "apt-principles-framework-audit.md",
+const ACTIVE_AUDIT_MARKDOWN = [];
+
+const ALLOWED_TOP_LEVEL_GOVERNANCE_MARKDOWN = [
+  "AGENTS.md",
+  "CONTRIBUTING.md",
 ];
 
 const REQUIRED_TOP_LEVEL_MARKDOWN = [
@@ -29,7 +32,12 @@ const REQUIRED_TOP_LEVEL_MARKDOWN = [
   ...ACTIVE_AUDIT_MARKDOWN,
 ];
 
-const ALLOWED_TOP_LEVEL_NON_MARKDOWN = ["package.json"];
+const ALL_ALLOWED_TOP_LEVEL_MARKDOWN = [
+  ...REQUIRED_TOP_LEVEL_MARKDOWN,
+  ...ALLOWED_TOP_LEVEL_GOVERNANCE_MARKDOWN,
+];
+
+const ALLOWED_TOP_LEVEL_NON_MARKDOWN = [".gitattributes", ".gitignore", ".graphifyignore", "package.json"];
 
 const REQUIRED_FOLDERS = ["checklists", "examples", "prompts", "references", "templates"];
 const REQUIRED_FRONTMATTER_KEYS = ["title", "version", "last_updated", "owner", "status"];
@@ -255,7 +263,16 @@ function relativeToRoot(root, filePath) {
 }
 
 function isIgnored(relativePath) {
-  return relativePath === "archive" || relativePath.startsWith("archive/");
+  return (
+    relativePath === "archive" ||
+    relativePath.startsWith("archive/") ||
+    relativePath === ".github" ||
+    relativePath.startsWith(".github/") ||
+    relativePath === ".claude" ||
+    relativePath.startsWith(".claude/") ||
+    relativePath === "reports/archive" ||
+    relativePath.startsWith("reports/archive/")
+  );
 }
 
 function walkFiles(root) {
@@ -394,7 +411,7 @@ function validate(root) {
   }
 
   for (const actual of topLevelMarkdown) {
-    if (!REQUIRED_TOP_LEVEL_MARKDOWN.includes(actual)) {
+    if (!ALL_ALLOWED_TOP_LEVEL_MARKDOWN.includes(actual)) {
       addIssue(errors, "error", `Unexpected active top-level Markdown file: ${actual}`);
     }
   }

@@ -1,7 +1,7 @@
 ---
 title: APT Docs Index
 version: v1
-last_updated: 2026-04-24
+last_updated: 2026-05-31
 owner: APT
 status: draft
 ---
@@ -36,8 +36,6 @@ Root Markdown files are intentional. They are the canonical human-readable APT d
 - `operations-support.md` - how systems are run and supported
 - `knowledge-system.md` - how learning is captured and reused
 - `ai-agent-framework.md` - how AI and agents participate safely
-- `apt-principles-framework-audit.md` - active consolidation audit and framework history
-
 ## Build Kit
 
 - `checklists/` - review and release gates
@@ -46,18 +44,95 @@ Root Markdown files are intentional. They are the canonical human-readable APT d
 - `templates/` - starting structures for new docs, examples, checklists, and prompts
 - `references/` - JSON contracts for tokens, review bundles, architecture maps, knowledge schemas, metadata/versioning, and project profiles
 
+## AI Configuration
+
+This repo ships three AI namespace configurations. Each targets a different tool and serves a different purpose.
+
+### `.github/` — GitHub Copilot (active for this repo)
+
+The `.github/` directory contains the **active AI configuration for apt-principles** itself:
+
+| Path | Purpose |
+|------|---------|
+| `.github/copilot-instructions.md` | Workspace rules for GitHub Copilot |
+| `.github/agents/` | 9 scoped agents for APT doctrine maintenance (auditor, principles maintainer, checklist synchronizer, prompt curator, docs maintainer, security reviewer, API architect, frontend implementer, test engineer) |
+| `.github/skills/` | 13 reusable task modules (API design, Cloudflare, docs, testing, payments, webhooks, and more) |
+| `.github/prompts/` | 5 guided workflow prompts (review-repo, generate-api, add-feature, create-docs, standard-repo-audit) |
+| `.github/instructions/` | 2 file-scoped editing rules (doctrine-root, checklists-only) |
+
+**For AI agents working IN this repo:** Start with `.github/copilot-instructions.md` and `AGENTS.md` before doing any work. Use the scoped agents in `.github/agents/` for their named domains — do not conflate doctrine maintenance agents with product implementation agents.
+
+### `.claude/` — Claude Code CLI (template config for downstream projects)
+
+`.claude/CLAUDE.md` contains Claude Code workspace rules for **this repo** (documentation-only, npm, doctrine focus). The `agents/` and `skills/` subdirectories are **downstream project templates** — copy them into a product repo's `.claude/` and adapt:
+
+| Path | Purpose |
+|------|---------|
+| `.claude/CLAUDE.md` | Claude Code project context for this repo |
+| `.claude/agents/` | Template agents for downstream product repos |
+| `.claude/skills/` | Template skills for downstream product repos (4 core skills) |
+| `.claude/commands/` | Claude Code `/commands` for product development tasks |
+
+See `.claude/agents/README.md` and `.claude/skills/README.md` for template usage guidance.
+
+### `.codex/` — Codex (condensed config for headless/automated tasks)
+
+| Path | Purpose |
+|------|---------|
+| `.codex/config.toml` | Model and context file configuration |
+| `.codex/prompts/` | Condensed action prompts for Codex invocation |
+| `.codex/skills/` | Condensed skill definitions (synced from `.github/skills/`) |
+
+### Skill sync policy
+
+Four skills appear in all three namespaces (`api-first-openapi-designer`, `cloudflare-hono-worker-builder`, `docs-kb-maintainer`, `testing-validation-runner`). `.github/skills/` is canonical. Run `npm run sync:check` to detect content drift between copies.
+
+### AI readiness validation
+
+To check whether a project has the required AI configuration files:
+
+All commands below must be run **from `apt-principles`** — the script lives here and is not copied to downstream repos.
+
+```bash
+# Validate this repo (should score 4/4)
+npm run validate:ai
+
+# Validate a downstream project (run from apt-principles, target with --repo-root)
+node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach
+
+# Scaffold missing AI configuration from templates into a downstream project
+node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach --fix
+```
+
+If you are already inside a downstream repo and want to run the check from there:
+
+```bash
+# From inside apt-coach (or any sibling repo):
+node ..\apt-principles\scripts\validate-ai-readiness.mjs --repo-root .
+node ..\apt-principles\scripts\validate-ai-readiness.mjs --repo-root . --fix
+```
+
+See `scripts/README.md` for the full score table and flag reference.
+
 ## Folder Contract
 
 The active structure is deliberate:
 
-- `apt-principles/*.md` - canonical doctrine and the active framework audit.
-- `checklists/` - gates for review, release, adoption, quality, and operational readiness.
-- `examples/` - applied patterns and real project profile examples.
-- `prompts/` - reusable AI, agent, and operator prompts.
-- `references/` - machine-readable contracts for projects and public-site consumers.
-- `scripts/` - portable validation tooling.
-- `templates/` - authoring templates for new APT artifacts.
-- `package.json` - local script entrypoint that makes this folder self-validating.
+- `apt-principles/*.md` — canonical doctrine files.
+- `checklists/` — gates for review, release, adoption, quality, and operational readiness.
+- `examples/` — applied patterns and real project profile examples.
+- `prompts/` — reusable AI, agent, and operator prompts.
+- `references/` — machine-readable contracts for projects and public-site consumers.
+- `scripts/` — portable validation tooling.
+- `templates/` — authoring templates for new APT artifacts.
+- `governance/` — maturity model, scorecard, and review processes.
+- `standards/` — domain-specific standards (API, coding, data, documentation, observability, testing).
+- `principles/` — quick-reference cards per APT lifecycle layer.
+- `docs/` — diagrams and supplementary documentation.
+- `.github/` — active AI configuration: Copilot agents, skills, prompts, and instructions.
+- `.claude/` — Claude Code workspace config (this repo) + downstream project templates.
+- `.codex/` — Codex headless configuration.
+- `package.json` — local script entrypoint that makes this folder self-validating.
 
 New top-level Markdown files should only be added when they become canonical framework areas or active framework governance records. Otherwise, add content to the appropriate build-kit folder.
 
@@ -118,6 +193,20 @@ npm --prefix apt-principles run validate
 The validator checks active docs and references only and ignores `archive/`. It fails on structural drift, missing frontmatter, missing required sections, invalid JSON references, and broken active local links. It warns on shallow content, unfinished-work markers, empty headings, and missing related-artifact signals.
 
 For portable usage in other APT projects, copy `scripts/validate-apt-principles.mjs` and adjust the configuration constants at the top of the script.
+
+**AI readiness validation** checks whether AI configuration files are present, structured, and complete:
+
+```bash
+npm run validate:ai
+```
+
+Scores the repo 0–4 (None → Minimal → Configured → Active → Optimizing). Run with `--fix` against a downstream project to scaffold missing files from apt-principles templates.
+
+**Skill sync check** detects content drift between the four skills shared across `.github/skills/`, `.claude/skills/`, and `.codex/skills/`:
+
+```bash
+npm run sync:check
+```
 
 ## Audit Report Scaffolding
 
