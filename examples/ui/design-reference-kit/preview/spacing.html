@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Spacing" name="Spacing scale" subtitle="xs→xl with 4rem section rhythm" viewport="700x150" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:24px}
+  .lab{font-size:11px;color:hsl(var(--muted-foreground));margin-bottom:14px;text-transform:uppercase;letter-spacing:.12em}
+  .row{display:flex;gap:12px;align-items:flex-end}
+  .item{text-align:center}
+  .bar{background:hsl(220 70% 55% / .85);border-radius:3px;height:30px}
+  .name{font-size:11px;font-weight:600;margin-top:8px}
+  .val{font-size:10px;color:hsl(var(--muted-foreground));font-family:var(--font-mono)}
+</style>
+</head>
+<body>
+  <div class="lab">Spacing scale — section rhythm 4rem</div>
+  <div class="row">
+    <div class="item"><div class="bar" style="width:8px"></div><div class="name">xs</div><div class="val">.5</div></div>
+    <div class="item"><div class="bar" style="width:12px"></div><div class="name">sm</div><div class="val">.75</div></div>
+    <div class="item"><div class="bar" style="width:16px"></div><div class="name">md</div><div class="val">1</div></div>
+    <div class="item"><div class="bar" style="width:24px"></div><div class="name">lg</div><div class="val">1.5</div></div>
+    <div class="item"><div class="bar" style="width:32px"></div><div class="name">xl</div><div class="val">2</div></div>
+    <div class="item"><div class="bar" style="width:64px"></div><div class="name">section</div><div class="val">4</div></div>
+  </div>
+</body>
+</html>

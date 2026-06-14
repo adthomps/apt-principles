@@ -7,6 +7,7 @@ import { spawnSync } from "node:child_process";
 
 const DEFAULT_REPOS = [
   "apt-principles",
+  "apt-agent-standards",
   "applied-practical-thinking",
   "apt-coach",
   "apt-dream-to-reality",

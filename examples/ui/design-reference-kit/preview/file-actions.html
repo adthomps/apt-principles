@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="File upload & download" subtitle="Dropzone, upload progress, download action" viewport="700x190" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);font-family:var(--font-sans);color:hsl(220 10% 95%);padding:24px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:hsl(var(--muted-foreground));font-weight:600;margin-bottom:9px}
+  .drop{border:1.5px dashed hsl(220 70% 55% / .45);background:hsl(220 70% 55% / .06);border-radius:10px;
+    padding:22px 16px;text-align:center}
+  .drop .ic{width:38px;height:38px;border-radius:10px;background:hsl(220 70% 55% / .12);color:hsl(220 70% 64%);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 11px}
+  .drop .ic svg{width:20px;height:20px}
+  .drop .t{font-size:13.5px;font-weight:500}
+  .drop .t b{color:hsl(220 70% 66%)}
+  .drop .s{font-size:11px;color:hsl(var(--muted-foreground));margin-top:4px}
+  .file{display:flex;align-items:center;gap:11px;border:1px solid hsl(var(--border));background:hsl(var(--card));
+    border-radius:9px;padding:11px 12px;margin-bottom:10px}
+  .fic{width:34px;height:34px;border-radius:8px;background:hsl(220 15% 18%);color:hsl(220 11% 78%);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .fic svg{width:17px;height:17px}
+  .fmeta{flex:1;min-width:0}
+  .fn{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fs{font-size:11px;color:hsl(var(--muted-foreground));margin-top:1px}
+  .act{width:32px;height:32px;border-radius:7px;border:1px solid hsl(var(--border));color:hsl(220 11% 80%);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .act svg{width:15px;height:15px}
+  .bar{height:5px;border-radius:3px;background:hsl(220 15% 18%);overflow:hidden;margin-top:7px}
+  .bar i{display:block;height:100%;width:64%;border-radius:3px;background:hsl(220 70% 55%)}
+  .pct{font-size:11px;color:hsl(220 70% 64%);font-weight:600}
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div>
+      <div class="lab">Upload — dropzone</div>
+      <div class="drop">
+        <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+        <div class="t"><b>Click to upload</b> or drag &amp; drop</div>
+        <div class="s">CSV, JSON or PDF · up to 25 MB</div>
+      </div>
+    </div>
+    <div>
+      <div class="lab">Files — uploading &amp; download</div>
+      <div class="file">
+        <div class="fic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="fmeta">
+          <div class="fn">transactions-q2.csv</div>
+          <div class="bar"><i></i></div>
+        </div>
+        <span class="pct">64%</span>
+      </div>
+      <div class="file">
+        <div class="fic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="fmeta">
+          <div class="fn">design-tokens.json</div>
+          <div class="fs">12 KB · ready</div>
+        </div>
+        <span class="act" title="Download"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

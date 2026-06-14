@@ -18,6 +18,8 @@ The knowledge system prevents decisions, standards, and implementation lessons f
 - Keep knowledge versioned in source control.
 - Update related examples, prompts, and checklists when doctrine changes.
 - Separate internal runbooks, AI agent instructions, and public documentation by audience.
+- Convert incidents, failed validation, support findings, and release outcomes into reusable artifacts or explicit non-actions.
+- Preserve provenance, status, confidence, retention, and audience when knowledge is used by retrieval or AI systems.
 - Avoid duplication — duplicate guidance creates drift.
 
 ## Knowledge Artifact Types
@@ -32,6 +34,9 @@ The knowledge system prevents decisions, standards, and implementation lessons f
 - Decision records
 - Project profiles
 - Release notes
+- Ingest reports
+- Query responses
+- Feedback labels
 
 ## Required Artifacts
 
@@ -45,6 +50,7 @@ The knowledge system prevents decisions, standards, and implementation lessons f
 - Same guidance described differently in multiple places requires consolidation.
 - Doctrine changes without corresponding example/checklist/prompt updates are incomplete.
 - AI-ingestible docs must be concise, structured, and source-aware.
+- Incident learning is incomplete until the durable artifact or accepted non-action is linked.
 
 ## Canonical Doc
 

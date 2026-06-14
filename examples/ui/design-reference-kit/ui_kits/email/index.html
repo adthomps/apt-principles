@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!-- @dsCard group="UI Kit — Email" name="Notification email (UI kit)" subtitle="Table-based transactional email template" viewport="640x640" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APT — Notification email</title>
+<!-- APT transactional / notification email template.
+     Table-based, inline-styled for broad email-client support. Colors are the
+     APT dark palette flattened to hex (CSS vars/HSL-alpha are unreliable in email).
+     The outer wrapper just centers the email; copy the <table class="email"> block. -->
+<style>
+  body{margin:0;padding:0;background:#0f1217;-webkit-font-smoothing:antialiased}
+  /* dark-mode email clients */
+  a{text-decoration:none}
+  @media (max-width:620px){.email{width:100% !important}.px{padding-left:22px !important;padding-right:22px !important}}
+</style>
+</head>
+<body style="margin:0;padding:0;background:#0f1217;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;">Your weekly APT digest — 3 systems updated, 1 review waiting.</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f1217;padding:32px 12px;">
+    <tr><td align="center">
+      <table role="presentation" class="email" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+
+        <!-- brand -->
+        <tr><td style="padding:4px 8px 22px;">
+          <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+            <td style="width:34px;vertical-align:middle;">
+              <table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="width:34px;height:34px;border-radius:50%;border:1px solid #4f7fe0;background:#151a22;color:#5b86dd;font-size:15px;font-weight:700;text-align:center;line-height:34px;">A</td></tr></table>
+            </td>
+            <td style="padding-left:10px;vertical-align:middle;">
+              <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#7a8499;white-space:nowrap;">Applied Practical Thinking</div>
+              <div style="font-size:15px;font-weight:700;color:#eef1f5;letter-spacing:-.2px;line-height:1.3;">APT</div>
+            </td>
+          </tr></table>
+        </td></tr>
+
+        <!-- card -->
+        <tr><td style="background:#161b23;border:1px solid #2a313d;border-radius:16px;overflow:hidden;">
+          <!-- header band -->
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+            <tr><td class="px" style="padding:30px 34px 6px;">
+              <div style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#5b86dd;">Weekly digest</div>
+              <h1 style="margin:10px 0 0;font-size:25px;line-height:1.2;color:#f1f3f6;font-weight:700;letter-spacing:-.4px;">Your week in systems</h1>
+              <p style="margin:10px 0 0;font-size:14px;line-height:1.6;color:#aab2c2;">Hi Adam — here's what moved across your APT workspace since Monday.</p>
+            </td></tr>
+
+            <!-- stat row -->
+            <tr><td class="px" style="padding:22px 34px 6px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+                <td width="33%" style="padding:14px 0;background:#0f141b;border:1px solid #2a313d;border-radius:10px;text-align:center;">
+                  <div style="font-size:24px;font-weight:700;color:#5b86dd;letter-spacing:-.5px;">3</div>
+                  <div style="font-size:11px;color:#7a8499;margin-top:2px;">Systems updated</div>
+                </td>
+                <td width="12"></td>
+                <td width="33%" style="padding:14px 0;background:#0f141b;border:1px solid #2a313d;border-radius:10px;text-align:center;">
+                  <div style="font-size:24px;font-weight:700;color:#f1f3f6;letter-spacing:-.5px;">12</div>
+                  <div style="font-size:11px;color:#7a8499;margin-top:2px;">Decisions logged</div>
+                </td>
+                <td width="12"></td>
+                <td width="33%" style="padding:14px 0;background:#0f141b;border:1px solid #2a313d;border-radius:10px;text-align:center;">
+                  <div style="font-size:24px;font-weight:700;color:#3fae82;letter-spacing:-.5px;">1</div>
+                  <div style="font-size:11px;color:#7a8499;margin-top:2px;">Review waiting</div>
+                </td>
+              </tr></table>
+            </td></tr>
+
+            <!-- list item -->
+            <tr><td class="px" style="padding:22px 34px 4px;">
+              <div style="font-size:12px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:#7a8499;padding-bottom:10px;border-bottom:1px solid #2a313d;">Highlights</div>
+            </td></tr>
+            <tr><td class="px" style="padding:14px 34px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="width:38px;vertical-align:top;"><div style="width:34px;height:34px;border-radius:9px;background:#1a2230;color:#5b86dd;text-align:center;line-height:34px;font-size:15px;">★</div></td>
+                  <td style="padding-left:12px;">
+                    <div style="font-size:14px;font-weight:600;color:#eef1f5;">Dream to Deliver shipped to Live</div>
+                    <div style="font-size:12.5px;color:#aab2c2;line-height:1.5;margin-top:2px;">Promoted from prototype after passing all lint gates.</div>
+                  </td>
+                </tr>
+              </table>
+            </td></tr>
+            <tr><td class="px" style="padding:0 34px 14px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="width:38px;vertical-align:top;"><div style="width:34px;height:34px;border-radius:9px;background:#1a2230;color:#5b86dd;text-align:center;line-height:34px;font-size:15px;">↗</div></td>
+                  <td style="padding-left:12px;">
+                    <div style="font-size:14px;font-weight:600;color:#eef1f5;">Reuse rate up 6%</div>
+                    <div style="font-size:12.5px;color:#aab2c2;line-height:1.5;margin-top:2px;">Driven by the cosmic hero and browse-card patterns.</div>
+                  </td>
+                </tr>
+              </table>
+            </td></tr>
+
+            <!-- CTA -->
+            <tr><td class="px" style="padding:8px 34px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+                <td style="border-radius:9px;background:#3c71dd;">
+                  <a href="#" style="display:inline-block;padding:13px 26px;font-size:14px;font-weight:600;color:#0f1217;">Open your console →</a>
+                </td>
+              </tr></table>
+            </td></tr>
+          </table>
+        </td></tr>
+
+        <!-- footer -->
+        <tr><td style="padding:24px 12px 8px;text-align:center;">
+          <div style="font-size:12px;color:#7a8499;line-height:1.6;">You're receiving this because weekly digests are on.<br>
+            <a href="#" style="color:#8c95a8;text-decoration:underline;">Manage preferences</a> &nbsp;·&nbsp; <a href="#" style="color:#8c95a8;text-decoration:underline;">Unsubscribe</a></div>
+          <div style="font-size:11px;color:#5b6376;margin-top:14px;">© 2026 Applied Practical Thinking · This is a demonstration, not a production system.</div>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>

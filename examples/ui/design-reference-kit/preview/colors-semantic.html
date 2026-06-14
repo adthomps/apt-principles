@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Colors" name="Feedback colors" subtitle="Danger, warning, success, info — semantic only" viewport="700x150" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);font-family:var(--font-sans);color:hsl(var(--foreground));padding:22px}
+  .row{display:flex;gap:14px}
+  .sw{flex:1;border-radius:10px;border:1px solid hsl(var(--border));overflow:hidden}
+  .chip{height:56px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+  .meta{padding:7px 10px;background:hsl(var(--card))}
+  .name{font-size:12px;font-weight:600}
+  .val{font-size:10.5px;color:hsl(var(--muted-foreground));font-family:var(--font-mono);margin-top:2px}
+  .lab{font-size:11px;color:hsl(var(--muted-foreground));margin-bottom:10px;text-transform:uppercase;letter-spacing:.12em}
+</style>
+</head>
+<body>
+  <div class="lab">Feedback — semantic only, never decoration</div>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:hsl(0 65% 45%);color:#fff">Danger</div><div class="meta"><div class="name">destructive</div><div class="val">0 65% 45%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(38 92% 50%);color:hsl(220 20% 8%)">Warning</div><div class="meta"><div class="name">warning</div><div class="val">38 92% 50%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(165 45% 40%);color:hsl(220 20% 8%)">Success</div><div class="meta"><div class="name">success</div><div class="val">165 45% 40%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(220 70% 55%);color:hsl(220 20% 8%)">Info</div><div class="meta"><div class="name">primary</div><div class="val">220 70% 55%</div></div></div>
+  </div>
+</body>
+</html>

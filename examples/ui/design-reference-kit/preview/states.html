@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Complete states" subtitle="Loading, empty, error, success — required by doctrine" viewport="700x200" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:22px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .panel{border:1px solid hsl(var(--border));background:hsl(var(--card));border-radius:10px;padding:14px;height:128px;display:flex;flex-direction:column}
+  .cap{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:hsl(var(--muted-foreground));margin-bottom:10px;font-weight:600}
+  .sk{height:9px;border-radius:5px;background:linear-gradient(90deg,hsl(220 15% 18%),hsl(220 15% 24%),hsl(220 15% 18%));background-size:200% 100%;animation:sh 1.3s linear infinite;margin-bottom:8px}
+  @keyframes sh{from{background-position:200% 0}to{background-position:-200% 0}}
+  .mid{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:7px}
+  .ic{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+  .ic svg{width:17px;height:17px}
+  .empty .ic{background:hsl(220 15% 18%);color:hsl(var(--muted-foreground))}
+  .err .ic{background:hsl(0 65% 50% / .14);color:hsl(0 65% 64%)}
+  .ok .ic{background:hsl(165 45% 40% / .14);color:hsl(165 50% 60%)}
+  .msg{font-size:11.5px;color:hsl(220 12% 78%);line-height:1.4}
+  .sub{font-size:10px;color:hsl(var(--muted-foreground))}
+  .mini{font-size:10.5px;padding:3px 9px;border-radius:6px;cursor:default}
+  .mini.p{background:hsl(220 70% 55%);color:hsl(220 20% 8%);font-weight:600}
+  .mini.o{border:1px solid hsl(var(--border));color:hsl(220 10% 90%)}
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="panel">
+      <div class="cap">Loading</div>
+      <div class="sk" style="width:80%"></div>
+      <div class="sk" style="width:100%"></div>
+      <div class="sk" style="width:60%"></div>
+      <div class="sk" style="width:90%;margin-top:auto"></div>
+    </div>
+    <div class="panel empty">
+      <div class="cap">Empty</div>
+      <div class="mid">
+        <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-3H5a2 2 0 0 0-2 2Z"/></svg></div>
+        <div class="msg">No results yet</div>
+        <span class="mini o">Add the first item</span>
+      </div>
+    </div>
+    <div class="panel err">
+      <div class="cap">Error</div>
+      <div class="mid">
+        <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="msg">Couldn't load</div>
+        <span class="sub">Request ID a1b2 · </span><span class="mini p">Retry</span>
+      </div>
+    </div>
+    <div class="panel ok">
+      <div class="cap">Success</div>
+      <div class="mid">
+        <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div class="msg">Saved &amp; validated</div>
+        <span class="sub">All checks passed</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

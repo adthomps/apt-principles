@@ -16,6 +16,8 @@ Build nothing without a clear problem, audience, and success criterion.
 
 - Identify the problem before naming a feature or technology.
 - Define success criteria before implementation begins.
+- Name the baseline condition and target success signal.
+- Identify the evidence that will prove movement.
 - Record operational and support impact alongside user impact.
 - Avoid work that cannot be measured or explained.
 - Higher-order concerns (principles, outcomes, UX) take precedence over implementation details.
@@ -39,6 +41,7 @@ Higher levels always override lower levels.
 - PR description must name the outcome being delivered.
 - Acceptance criteria must be verifiable, not aspirational.
 - Feature requests without problem statements are not implementation-ready.
+- "Implemented" is not an outcome unless the changed user, operator, system, or knowledge state is named.
 
 ## Canonical Doc
 

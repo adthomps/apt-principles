@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Tabs" subtitle="Underline (primary view switch) + segmented pill variants" viewport="640x300" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:26px;display:flex;flex-direction:column;gap:26px}
+  .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:hsl(var(--muted-foreground));font-weight:600;margin-bottom:13px}
+  .tabs{border-bottom:1px solid hsl(var(--border));display:flex;gap:2px}
+  .tabs button{position:relative;border:0;background:transparent;color:hsl(var(--muted-foreground));font-size:13.5px;font-weight:500;padding:9px 14px;cursor:pointer;display:flex;align-items:center;gap:7px;font-family:inherit}
+  .tabs .count{font-size:10.5px;font-weight:600;background:hsl(var(--muted));color:hsl(var(--muted-foreground));border-radius:9999px;padding:1px 7px}
+  .tabs button.on{color:hsl(var(--foreground))}
+  .tabs button.on::after{content:"";position:absolute;left:8px;right:8px;bottom:-1px;height:2px;border-radius:2px 2px 0 0;background:hsl(var(--primary))}
+  .tabs button.on .count{background:hsl(var(--primary) / .16);color:hsl(220 70% 72%)}
+  .tabpills{display:inline-flex;background:hsl(var(--muted));border:1px solid hsl(var(--border));border-radius:10px;padding:3px;gap:3px}
+  .tabpills button{border:0;background:transparent;color:hsl(var(--muted-foreground));font-size:13px;font-weight:500;padding:7px 14px;border-radius:7px;cursor:pointer;font-family:inherit}
+  .tabpills button.on{background:hsl(var(--card));color:hsl(var(--foreground));box-shadow:var(--elevation-1)}
+</style>
+</head>
+<body>
+  <div>
+    <div class="lbl">Underline · primary view switch</div>
+    <div class="tabs">
+      <button class="on">Labs <span class="count">12</span></button>
+      <button>Proof <span class="count">5</span></button>
+      <button>Drafts <span class="count">3</span></button>
+    </div>
+  </div>
+  <div>
+    <div class="lbl">Segmented · compact scope</div>
+    <div class="tabpills">
+      <button>Week</button>
+      <button class="on">Month</button>
+      <button>Quarter</button>
+    </div>
+  </div>
+</body>
+</html>

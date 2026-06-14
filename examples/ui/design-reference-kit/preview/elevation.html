@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Spacing" name="Elevation & glow" subtitle="Four-step shadow ramp + signature blue glow" viewport="700x160" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:30px 24px}
+  .row{display:flex;gap:22px;align-items:center}
+  .item{flex:1;text-align:center}
+  .box{height:60px;border-radius:11px;background:hsl(var(--card));border:1px solid hsl(var(--border))}
+  .name{font-size:11.5px;font-weight:600;margin-top:14px}
+  .e1{box-shadow:var(--elevation-1)}
+  .e2{box-shadow:var(--elevation-2)}
+  .e3{box-shadow:var(--elevation-3)}
+  .e4{box-shadow:var(--elevation-4)}
+  .gs{box-shadow:var(--elevation-glow-strong);border-color:hsl(220 70% 55% / .4)}
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box e1"></div><div class="name">elevation-1</div></div>
+    <div class="item"><div class="box e2"></div><div class="name">elevation-2</div></div>
+    <div class="item"><div class="box e3"></div><div class="name">elevation-3</div></div>
+    <div class="item"><div class="box e4"></div><div class="name">elevation-4</div></div>
+    <div class="item"><div class="box gs"></div><div class="name">glow-strong</div></div>
+  </div>
+</body>
+</html>

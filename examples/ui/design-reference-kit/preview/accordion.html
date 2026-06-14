@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Accordion / FAQ" subtitle="Stacked disclosure; chevron rotates, panel animates height" viewport="640x300" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:26px}
+  .acc{border:1px solid hsl(var(--border));border-radius:11px;overflow:hidden;background:hsl(220 18% 11%)}
+  .item+.item{border-top:1px solid hsl(var(--border) / .7)}
+  .btn{width:100%;border:0;background:transparent;color:hsl(var(--foreground));display:flex;align-items:center;gap:12px;padding:15px 16px;font-size:14px;font-weight:500;text-align:left;font-family:inherit}
+  .item.open .btn{color:hsl(220 70% 72%)}
+  .q-ic{color:hsl(var(--muted-foreground));flex-shrink:0;width:16px;height:16px}
+  .chev{margin-left:auto;color:hsl(var(--muted-foreground));width:17px;height:17px;flex-shrink:0}
+  .item.open .chev{transform:rotate(180deg)}
+  .panel{padding:0 16px 16px 44px;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.65}
+</style>
+</head>
+<body>
+  <div class="acc">
+    <div class="item open">
+      <button class="btn">
+        <svg class="q-ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        What counts as a decision?
+        <svg class="chev" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="panel">Any tradeoff with at least two viable options and a reason for choosing one — captured as a durable, reviewable unit of engineering knowledge.</div>
+    </div>
+    <div class="item">
+      <button class="btn">
+        <svg class="q-ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        Is teal ever a call-to-action?
+        <svg class="chev" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+    <div class="item">
+      <button class="btn">
+        <svg class="q-ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        Can I run APT in light mode?
+        <svg class="chev" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</body>
+</html>

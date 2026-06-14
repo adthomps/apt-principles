@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Tags & badges" subtitle="Blue emphasis variants; teal restricted to success/section" viewport="700x320" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:24px}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .lab{font-size:11px;color:hsl(var(--muted-foreground));margin-bottom:10px;text-transform:uppercase;letter-spacing:.12em}
+  .lab.mt{margin-top:20px}
+  .t{display:inline-flex;align-items:center;border-radius:6px;font-weight:500;font-size:12px;padding:3px 10px}
+  /* Real AptTag variants — all emphasis is BLUE (primary) */
+  .default{background:hsl(220 15% 18%);color:hsl(220 10% 90%)}
+  .accent{border:1px solid hsl(220 70% 55% / .4);background:hsl(220 70% 55% / .1);color:hsl(220 70% 70%)}
+  .primary{background:hsl(220 70% 55% / .2);color:hsl(220 70% 70%)}
+  .muted{background:hsl(220 15% 15%);color:hsl(var(--muted-foreground))}
+  .outline{border:1px solid hsl(var(--border));color:hsl(220 10% 95%)}
+  /* Restricted: teal = success / section identity ONLY */
+  .teal{border:1px solid hsl(165 45% 40% / .4);background:hsl(165 45% 40% / .12);color:hsl(165 50% 60%)}
+  .note{font-size:11.5px;color:hsl(var(--muted-foreground));line-height:1.55;margin-top:18px;
+    border-left:2px solid hsl(165 45% 40% / .6);padding-left:11px}
+  .note b{color:hsl(165 50% 62%)}
+</style>
+</head>
+<body>
+  <div class="lab">AptTag variants — emphasis is blue (primary)</div>
+  <div class="row">
+    <span class="t default">default</span>
+    <span class="t accent">accent</span>
+    <span class="t primary">primary</span>
+    <span class="t muted">muted</span>
+    <span class="t outline">outline</span>
+  </div>
+
+  <div class="lab mt">Restricted accent — teal, support semantics only</div>
+  <div class="row">
+    <span class="t teal">Success</span>
+    <span class="t teal">Stable</span>
+    <span class="t teal">Section</span>
+  </div>
+
+  <div class="note">
+    <b>Does teal fit APT principles?</b> Yes — but narrowly. The shipped <code>AptTag</code>
+    exposes only blue/neutral variants, so type &amp; status badges default to blue.
+    Teal is permitted <b>only</b> for success treatment, section identity, and chart accents.
+    Using it as a generic tag, CTA, hover, or active-nav color is a lint-critical failure.
+  </div>
+</body>
+</html>

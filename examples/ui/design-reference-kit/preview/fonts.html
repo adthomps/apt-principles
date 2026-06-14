@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Type" name="Font families" subtitle="Inter (primary UI) + IBM Plex Mono (technical)" viewport="700x220" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:24px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:hsl(var(--muted-foreground));font-weight:600;margin-bottom:10px}
+  .name{font-size:22px;font-weight:700;letter-spacing:-.01em}
+  .name .reg{color:hsl(var(--muted-foreground));font-weight:400;font-size:13px;margin-left:8px;letter-spacing:0}
+  .alpha{font-size:20px;margin-top:8px;line-height:1.35}
+  .weights{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:15px}
+  .weights span{color:hsl(220 11% 84%)}
+  .mono{font-family:var(--font-mono)}
+  .codeblock{font-family:var(--font-mono);font-size:13px;background:hsl(220 22% 7%);border:1px solid hsl(var(--border));
+    border-radius:9px;padding:13px 14px;margin-top:8px;line-height:1.6;color:hsl(220 12% 82%)}
+  .codeblock .k{color:hsl(220 70% 66%)}
+  .codeblock .s{color:hsl(165 50% 58%)}
+  .use{font-size:11px;color:hsl(var(--muted-foreground));margin-top:11px;line-height:1.5}
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div>
+      <div class="lab">Primary · UI &amp; prose</div>
+      <div class="name">Inter<span class="reg">400 · 500 · 600 · 700</span></div>
+      <div class="alpha">AaBbCcGgQq 0123456789</div>
+      <div class="weights">
+        <span style="font-weight:400">Regular</span>
+        <span style="font-weight:500">Medium</span>
+        <span style="font-weight:600">Semibold</span>
+        <span style="font-weight:700">Bold</span>
+      </div>
+      <div class="use">Site UI, docs, design-system &amp; spec pages, buttons, nav, cards, tables.</div>
+    </div>
+    <div>
+      <div class="lab">Companion · technical</div>
+      <div class="name mono">IBM Plex Mono<span class="reg" style="font-family:var(--font-sans)">400 · 500 · 600</span></div>
+      <div class="codeblock"><span class="k">const</span> token = <span class="s">"--primary: 220 70% 55%"</span>;<br>$ apt build <span class="k">--surface</span> proof</div>
+      <div class="use">Code blocks, CLI, file trees, prompt &amp; API examples, Mermaid source, token values.</div>
+    </div>
+  </div>
+</body>
+</html>

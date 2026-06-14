@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Breadcrumbs & pagination" subtitle="Location trail + numbered pages with ellipsis truncation" viewport="640x300" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:26px;display:flex;flex-direction:column;gap:28px}
+  .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:hsl(var(--muted-foreground));font-weight:600;margin-bottom:14px}
+  .crumbs{display:flex;align-items:center;gap:7px;font-size:13px}
+  .crumbs a{color:hsl(var(--muted-foreground));display:inline-flex;align-items:center;gap:6px;padding:3px 6px;border-radius:6px}
+  .crumbs svg{width:14px;height:14px}
+  .crumbs .sep{color:hsl(var(--muted-foreground) / .55);display:flex}
+  .crumbs .cur{color:hsl(var(--foreground));font-weight:500;padding:3px 6px}
+  .pager{display:flex;align-items:center;gap:6px}
+  .pager button{min-width:36px;height:36px;padding:0 10px;border-radius:8px;border:1px solid hsl(var(--border));background:transparent;color:hsl(var(--foreground));font-size:13px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-family:inherit}
+  .pager button svg{width:15px;height:15px}
+  .pager button.on{background:hsl(var(--primary));border-color:hsl(var(--primary));color:hsl(220 20% 99%)}
+  .pager .gap{min-width:24px;text-align:center;color:hsl(var(--muted-foreground));border:0;letter-spacing:1px}
+</style>
+</head>
+<body>
+  <div>
+    <div class="lbl">Breadcrumbs</div>
+    <nav class="crumbs">
+      <a><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg> Home</a>
+      <span class="sep"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
+      <a>Labs</a>
+      <span class="sep"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
+      <a>Payments</a>
+      <span class="sep"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></span>
+      <span class="cur">Decision graph</span>
+    </nav>
+  </div>
+  <div>
+    <div class="lbl">Pagination</div>
+    <div class="pager">
+      <button><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Prev</button>
+      <button>1</button>
+      <span class="gap">…</span>
+      <button>3</button>
+      <button class="on">4</button>
+      <button>5</button>
+      <span class="gap">…</span>
+      <button>12</button>
+      <button>Next <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Colors" name="Chart palette" subtitle="Ordered categorical ramp — lead with blue" viewport="700x195" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  /* Self-contained: literal token values inlined so the card renders
+     identically everywhere, with no dependency on an external @import. */
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);
+    font-family:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px}
+  .lab{font-size:11px;color:hsl(220 10% 55%);margin-bottom:12px;text-transform:uppercase;letter-spacing:.12em}
+  .row{display:flex;gap:12px}
+  .sw{flex:1;border-radius:10px;overflow:hidden;border:1px solid hsl(220 15% 20%)}
+  .chip{height:52px}
+  .meta{padding:7px 10px;background:hsl(220 18% 12%)}
+  .name{font-size:11.5px;font-weight:600}
+  .val{font-size:10px;color:hsl(220 10% 55%);font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;margin-top:2px}
+  .note{font-size:11.5px;color:hsl(220 10% 55%);line-height:1.5;margin-top:14px}
+  .note b{color:hsl(220 10% 95%)}
+</style>
+</head>
+<body>
+  <div class="lab">Chart ramp — ordered for categorical series</div>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:hsl(220 70% 55%)"></div><div class="meta"><div class="name">chart-1</div><div class="val">220 70% 55%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(165 45% 40%)"></div><div class="meta"><div class="name">chart-2</div><div class="val">165 45% 40%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(280 55% 55%)"></div><div class="meta"><div class="name">chart-3</div><div class="val">280 55% 55%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(30 75% 50%)"></div><div class="meta"><div class="name">chart-4</div><div class="val">30 75% 50%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(340 65% 55%)"></div><div class="meta"><div class="name">chart-5</div><div class="val">340 65% 55%</div></div></div>
+  </div>
+  <div class="note"><b>Lead with blue.</b> Single-series charts use chart-1 (primary). Teal (chart-2) is the
+    first categorical accent. Reserve chart-3–5 for genuine multi-series needs — not decoration.</div>
+</body>
+</html>

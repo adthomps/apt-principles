@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Chart — ranking" subtitle="Horizontal bar ranking" viewport="700x200" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:22px}
+  .card{border:1px solid hsl(var(--border));background:hsl(var(--card));border-radius:12px;padding:18px 20px;box-shadow:var(--elevation-2)}
+  .eyebrow{font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:hsl(var(--muted-foreground));font-weight:600;margin-bottom:14px}
+  .bar{display:grid;grid-template-columns:120px 1fr 42px;gap:12px;align-items:center;margin-bottom:11px}
+  .bar:last-child{margin-bottom:0}
+  .name{font-size:12.5px;color:hsl(220 11% 82%)}
+  .track{height:12px;border-radius:6px;background:hsl(220 15% 16%);overflow:hidden}
+  .fill{height:100%;border-radius:6px}
+  .num{font-size:12px;font-family:var(--font-mono);color:hsl(var(--muted-foreground));text-align:right}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="eyebrow">Most-reused patterns</div>
+    <div class="bar"><span class="name">Cosmic hero</span><div class="track"><div class="fill" style="width:94%;background:hsl(220 70% 55%)"></div></div><span class="num">94</span></div>
+    <div class="bar"><span class="name">Browse card</span><div class="track"><div class="fill" style="width:81%;background:hsl(220 70% 55%)"></div></div><span class="num">81</span></div>
+    <div class="bar"><span class="name">Top nav shell</span><div class="track"><div class="fill" style="width:73%;background:hsl(220 70% 55%)"></div></div><span class="num">73</span></div>
+    <div class="bar"><span class="name">Glass panel</span><div class="track"><div class="fill" style="width:58%;background:hsl(220 70% 55%)"></div></div><span class="num">58</span></div>
+    <div class="bar"><span class="name">Compact footer</span><div class="track"><div class="fill" style="width:46%;background:hsl(220 70% 55%)"></div></div><span class="num">46</span></div>
+  </div>
+</body>
+</html>

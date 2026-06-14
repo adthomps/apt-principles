@@ -67,7 +67,7 @@ To use this in another APT project such as `apt-coach` or `apt-dream-to-reality`
 
 ## AI Readiness Validation
 
-`validate-ai-readiness.mjs` checks whether a project has the files and configuration needed for AI-assisted work. It scores the repo 0–4 against the APT AI Agent Readiness dimension and can scaffold missing files from apt-principles templates.
+`validate-ai-readiness.mjs` checks whether a project has the files and configuration needed for AI-assisted work. It scores the repo 0-4 against the APT AI Agent Readiness dimension and can scaffold GitHub-oriented files from apt-principles templates.
 
 The script lives in `apt-principles` and is **always run from `apt-principles`**. Use `--repo-root` to point at a downstream project.
 
@@ -84,7 +84,7 @@ node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach --json
 # Write Markdown report to the target repo's docs/apt/reports/
 node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach --report
 
-# Scaffold missing AI config into the target repo from apt-principles templates
+# Scaffold GitHub-oriented readiness files into the target repo from apt-principles templates
 node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach --fix
 ```
 
@@ -103,10 +103,10 @@ Scores:
 | 0 | None | Nothing AI-related found |
 | 1 | Minimal | AGENTS.md with content |
 | 2 | Configured | + copilot-instructions.md + .github/agents/ with ≥1 agent |
-| 3 | Active | + ≥3 domain agents + skills + prompts + .claude/CLAUDE.md |
-| 4 | Optimizing | + valid agent frontmatter + .codex/ configured |
+| 3 | Active | + at least 3 domain agents, skills, prompts, and APT adoption context |
+| 4 | Optimizing | + valid agent frontmatter and an agent standards contract or manifest |
 
-`--fix` copies templates from apt-principles into the target project. It never overwrites existing files. Requires `--repo-root` (refuses to scaffold into apt-principles itself).
+`--fix` copies GitHub-oriented templates from apt-principles into the target project. It never overwrites existing files. Requires `--repo-root` (refuses to scaffold into apt-principles itself). Use the sibling `apt-agent-standards` repo for Claude, Codex, Copilot, `.agent-standards.json`, and `docs/project-context.md` distribution.
 
 ## Validation Scope
 

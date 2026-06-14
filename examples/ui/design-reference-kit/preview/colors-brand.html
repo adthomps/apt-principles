@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Colors" name="Primary (blue)" subtitle="The brand & only default action color, with glow" viewport="700x210" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);font-family:var(--font-sans);color:hsl(var(--foreground));padding:22px}
+  .row{display:flex;gap:14px;align-items:flex-end}
+  .stack{flex:1}
+  .lab{font-size:11px;color:hsl(var(--muted-foreground));margin-bottom:8px;text-transform:uppercase;letter-spacing:.12em}
+  .ramp{display:flex;gap:8px}
+  .sw{flex:1;border-radius:9px;height:54px;border:1px solid hsl(var(--border) / .6);display:flex;align-items:flex-end;padding:6px;box-sizing:border-box}
+  .t{font-size:10px;font-family:var(--font-mono);color:#fff;mix-blend-mode:difference}
+  .big{margin-top:14px;display:flex;gap:10px;align-items:center}
+  .glow{width:48px;height:48px;border-radius:50%;background:hsl(220 70% 55%);box-shadow:var(--elevation-glow-strong)}
+  .note{font-size:12px;color:hsl(var(--muted-foreground));line-height:1.5}
+  b{color:hsl(220 70% 65%)}
+</style>
+</head>
+<body>
+  <div class="lab">Primary · Blue — brand &amp; the only default action color</div>
+  <div class="ramp">
+    <div class="sw" style="background:hsl(220 70% 35%)"><span class="t">35%</span></div>
+    <div class="sw" style="background:hsl(220 70% 45%)"><span class="t">45%</span></div>
+    <div class="sw" style="background:hsl(220 70% 55%)"><span class="t">55% • base</span></div>
+    <div class="sw" style="background:hsl(220 80% 65%)"><span class="t">hover</span></div>
+    <div class="sw" style="background:hsl(220 70% 55% / .12);border-color:hsl(220 70% 55% / .4)"><span class="t" style="color:hsl(220 70% 70%);mix-blend-mode:normal">/10 wash</span></div>
+  </div>
+  <div class="big">
+    <div class="glow"></div>
+    <div class="note">Carries the emblem, CTAs, links, focus rings, active nav, and emphasis.<br>Signature <b>glow</b> shadow comes from primary at low alpha.</div>
+  </div>
+</body>
+</html>

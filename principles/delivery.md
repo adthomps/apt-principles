@@ -16,6 +16,7 @@ Delivery keeps build work traceable, reviewable, and recoverable.
 
 - Work is driven by a spec or issue — no code without clear intent.
 - Break work into increments that can be reviewed independently.
+- Each increment names its input, output, validation evidence, and stop condition.
 - Validate in preview before promoting to production.
 - Keep PRs scoped to a coherent change.
 - AI-generated work must follow the same structure, tests, and review gates as human work.
@@ -25,8 +26,10 @@ Delivery keeps build work traceable, reviewable, and recoverable.
 - Spec or issue
 - Implementation checklist
 - Acceptance criteria
+- Increment plan with owner and validation command
 - Validation evidence (test run, preview check)
 - Release note when user-facing behavior changes
+- Rollback or recovery path for production-impacting changes
 
 ## Release Readiness
 
@@ -44,6 +47,7 @@ Before promoting any change:
 - Code without a backing spec or issue is out of process.
 - Merging without validation evidence is a blocker.
 - Large, mixed-scope PRs require decomposition before review.
+- Failed checks require triage as blocking, deferred with accepted risk, or unrelated pre-existing failure.
 
 ## Canonical Docs
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="AptEmblem" subtitle="The circular A brand mark with spinning glow ring" viewport="700x155" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:24px;display:flex;align-items:center;gap:36px}
+  .em-wrap{position:relative;display:flex;align-items:center;justify-content:center}
+  .ring{position:absolute;inset:0;border-radius:50%;opacity:.6;filter:blur(8px);background:conic-gradient(from 0deg, transparent, hsl(220 70% 55% / .7), transparent);animation:aptEmblemSpin 4s linear infinite}
+  .em{position:relative;display:flex;align-items:center;justify-content:center;border-radius:50%;border:2px solid hsl(220 70% 55% / .6);background:hsl(220 20% 8% / .8);backdrop-filter:blur(4px);color:hsl(220 70% 60%);font-weight:700;z-index:1}
+  .xl{width:104px;height:104px;font-size:46px}
+  .lg{width:72px;height:72px;font-size:30px}
+  .md{width:48px;height:48px;font-size:18px;border-width:2px}
+  .sm{width:34px;height:34px;font-size:14px;border-width:1px}
+  .glow-s{box-shadow:var(--elevation-glow-strong)}
+  .glow-x{box-shadow:var(--elevation-glow-subtle)}
+  .meta{font-size:12px;color:hsl(var(--muted-foreground));line-height:1.6}
+  .meta b{color:hsl(220 10% 95%)}
+</style>
+</head>
+<body>
+  <div class="em-wrap"><div class="ring"></div><div class="em xl glow-s">A</div></div>
+  <div class="em-wrap"><div class="ring"></div><div class="em lg glow-s">A</div></div>
+  <div class="em-wrap"><div class="em md glow-x">A</div></div>
+  <div class="em-wrap"><div class="em sm">A</div></div>
+  <div class="meta"><b>AptEmblem</b> — the brand mark.<br>Circular badge · primary "A" · spinning glow ring.<br>Rendered in code, sizes sm→xl.</div>
+</body>
+</html>

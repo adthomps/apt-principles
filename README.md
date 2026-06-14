@@ -18,6 +18,8 @@ APT docs are maintained in three active layers:
 
 `apt-principles` owns the canonical APT source of truth. `applied-practical-thinking` owns the public APT portfolio, demo, learning, and showcase experience. The public APT Principles view should pull from this folder instead of maintaining a separate doctrine copy.
 
+`apt-agent-standards` is a separate installer and distribution system for applying APT-aligned AI agent standards across projects. It owns profile detection, install/sync scripts, `.agent-standards.json` manifests, and tool-native Claude, Codex, and GitHub Copilot file layouts. It should reference this repository for canonical doctrine instead of becoming a competing source of APT principles.
+
 Historical source/reference material has been saved outside this active package. Do not use external historical files as canonical guidance unless an active doc explicitly points to them.
 
 ## Canonical Doctrine
@@ -46,9 +48,22 @@ Root Markdown files are intentional. They are the canonical human-readable APT d
 
 ## AI Configuration
 
-This repo ships three AI namespace configurations. Each targets a different tool and serves a different purpose.
+This repo owns APT AI doctrine, review criteria, prompts, examples, and reference contracts. It does not own the cross-repo installation of Claude, Codex, or GitHub Copilot files.
 
-### `.github/` — GitHub Copilot (active for this repo)
+### Agent Standards Distribution
+
+`apt-principles` and `apt-agent-standards` have distinct responsibilities:
+
+| Repository | Responsibility |
+|------------|----------------|
+| `apt-principles` | Canonical APT doctrine, checklists, prompts, examples, references, project adoption rules, and validation expectations |
+| `apt-agent-standards` | Cross-project installer, profile manifests, source-to-target AI tool path mapping, `.agent-standards.json`, dry-run install/sync, and tool parity checks |
+
+Do not merge installer, profile, or path-mapping behavior into `apt-principles`. Reusable doctrine improvements discovered through installed agent standards should come back here as doctrine/build-kit/reference updates. Distribution changes should stay in `apt-agent-standards`.
+
+Portable contract: `references/agent-standards-contract.json`.
+
+### `.github/` - GitHub Copilot (active for this repo when present)
 
 The `.github/` directory contains the **active AI configuration for apt-principles** itself:
 
@@ -62,30 +77,18 @@ The `.github/` directory contains the **active AI configuration for apt-principl
 
 **For AI agents working IN this repo:** Start with `.github/copilot-instructions.md` and `AGENTS.md` before doing any work. Use the scoped agents in `.github/agents/` for their named domains — do not conflate doctrine maintenance agents with product implementation agents.
 
-### `.claude/` — Claude Code CLI (template config for downstream projects)
+### Cross-tool distribution
 
-`.claude/CLAUDE.md` contains Claude Code workspace rules for **this repo** (documentation-only, npm, doctrine focus). The `agents/` and `skills/` subdirectories are **downstream project templates** — copy them into a product repo's `.claude/` and adapt:
+Claude, Codex, and GitHub Copilot target files for downstream repositories are distributed by the sibling `apt-agent-standards` repository. Use that package for `.claude/`, `.codex/`, `.github/`, `AGENTS.md`, `.agent-standards.json`, profile detection, dry-run install, and sync behavior.
 
-| Path | Purpose |
-|------|---------|
-| `.claude/CLAUDE.md` | Claude Code project context for this repo |
-| `.claude/agents/` | Template agents for downstream product repos |
-| `.claude/skills/` | Template skills for downstream product repos (4 core skills) |
-| `.claude/commands/` | Claude Code `/commands` for product development tasks |
+Run its checks from `apt-agent-standards`:
 
-See `.claude/agents/README.md` and `.claude/skills/README.md` for template usage guidance.
+```bash
+node scripts/check-ai-tool-parity.mjs
+node scripts/audit-workspace-agent-standards.mjs --workspace-root .. --include-detection
+```
 
-### `.codex/` — Codex (condensed config for headless/automated tasks)
-
-| Path | Purpose |
-|------|---------|
-| `.codex/config.toml` | Model and context file configuration |
-| `.codex/prompts/` | Condensed action prompts for Codex invocation |
-| `.codex/skills/` | Condensed skill definitions (synced from `.github/skills/`) |
-
-### Skill sync policy
-
-Four skills appear in all three namespaces (`api-first-openapi-designer`, `cloudflare-hono-worker-builder`, `docs-kb-maintainer`, `testing-validation-runner`). `.github/skills/` is canonical. Run `npm run sync:check` to detect content drift between copies.
+Use `references/agent-standards-contract.json` as the contract between this doctrine repo and the installer/distribution repo.
 
 ### AI readiness validation
 
@@ -100,7 +103,7 @@ npm run validate:ai
 # Validate a downstream project (run from apt-principles, target with --repo-root)
 node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach
 
-# Scaffold missing AI configuration from templates into a downstream project
+# Scaffold GitHub-oriented readiness files from templates into a downstream project
 node scripts/validate-ai-readiness.mjs --repo-root ../apt-coach --fix
 ```
 
@@ -129,9 +132,7 @@ The active structure is deliberate:
 - `standards/` — domain-specific standards (API, coding, data, documentation, observability, testing).
 - `principles/` — quick-reference cards per APT lifecycle layer.
 - `docs/` — diagrams and supplementary documentation.
-- `.github/` — active AI configuration: Copilot agents, skills, prompts, and instructions.
-- `.claude/` — Claude Code workspace config (this repo) + downstream project templates.
-- `.codex/` — Codex headless configuration.
+- `.github/` — active AI configuration for this repo when present.
 - `package.json` — local script entrypoint that makes this folder self-validating.
 
 New top-level Markdown files should only be added when they become canonical framework areas or active framework governance records. Otherwise, add content to the appropriate build-kit folder.
@@ -200,9 +201,9 @@ For portable usage in other APT projects, copy `scripts/validate-apt-principles.
 npm run validate:ai
 ```
 
-Scores the repo 0–4 (None → Minimal → Configured → Active → Optimizing). Run with `--fix` against a downstream project to scaffold missing files from apt-principles templates.
+Scores the repo 0–4 (None → Minimal → Configured → Active → Optimizing). Run with `--fix` against a downstream project to scaffold GitHub-oriented files from apt-principles templates. Use `apt-agent-standards` for Claude, Codex, Copilot distribution, `.agent-standards.json`, and `docs/project-context.md`.
 
-**Skill sync check** detects content drift between the four skills shared across `.github/skills/`, `.claude/skills/`, and `.codex/skills/`:
+**Agent standards contract check** verifies that the doctrine/distribution ownership contract is present and points operators to the `apt-agent-standards` parity checks:
 
 ```bash
 npm run sync:check

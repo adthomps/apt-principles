@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Chart — compare" subtitle="Bars (teal focus) + donut on the chart ramp" viewport="700x230" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:22px}
+  .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+  .card{border:1px solid hsl(var(--border));background:hsl(var(--card));border-radius:12px;padding:18px;box-shadow:var(--elevation-2)}
+  .eyebrow{font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:hsl(var(--muted-foreground));font-weight:600;margin-bottom:14px}
+  .bars{display:flex;align-items:flex-end;gap:14px;height:120px}
+  .bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end}
+  .bar .b{width:100%;border-radius:6px 6px 0 0;background:hsl(220 70% 55%)}
+  .bar.hl .b{background:hsl(165 45% 45%);box-shadow:0 0 18px hsl(165 45% 45% / .35)}
+  .bar .l{font-size:10px;color:hsl(var(--muted-foreground));font-family:var(--font-mono)}
+  .donut-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:120px}
+  .donut{width:118px;height:118px;border-radius:50%;
+    background:conic-gradient(hsl(220 70% 55%) 0 55%, hsl(165 45% 40%) 55% 78%, hsl(280 55% 55%) 78% 92%, hsl(30 75% 50%) 92% 100%);
+    -webkit-mask:radial-gradient(circle 36px at center, transparent 98%, #000 100%);mask:radial-gradient(circle 36px at center, transparent 98%, #000 100%);
+    position:relative}
+  .legend{display:flex;flex-wrap:wrap;gap:5px 12px;margin-top:12px;font-size:10.5px;color:hsl(var(--muted-foreground))}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:middle}
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="card">
+      <div class="eyebrow">Throughput by stage — teal marks the focus</div>
+      <div class="bars">
+        <div class="bar"><div class="b" style="height:48%"></div><span class="l">Spec</span></div>
+        <div class="bar"><div class="b" style="height:66%"></div><span class="l">Build</span></div>
+        <div class="bar hl"><div class="b" style="height:92%"></div><span class="l">Review</span></div>
+        <div class="bar"><div class="b" style="height:58%"></div><span class="l">Ship</span></div>
+        <div class="bar"><div class="b" style="height:40%"></div><span class="l">Ops</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Mix</div>
+      <div class="donut-wrap"><div class="donut"></div></div>
+      <div class="legend">
+        <span><i style="background:hsl(220 70% 55%)"></i>Systems</span>
+        <span><i style="background:hsl(165 45% 40%)"></i>Demos</span>
+        <span><i style="background:hsl(280 55% 55%)"></i>Docs</span>
+        <span><i style="background:hsl(30 75% 50%)"></i>Other</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

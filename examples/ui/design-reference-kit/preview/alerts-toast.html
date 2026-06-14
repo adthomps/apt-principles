@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Alerts — toast & banner" subtitle="Transient toasts + persistent banners" viewport="700x270" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+  .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:hsl(var(--muted-foreground));font-weight:600;margin-bottom:10px}
+  /* toasts */
+  .toast{display:flex;gap:11px;align-items:flex-start;border:1px solid hsl(var(--border));background:hsl(220 18% 13%);border-radius:11px;padding:12px 13px;box-shadow:var(--elevation-3);margin-bottom:10px}
+  .toast svg{width:17px;height:17px;flex-shrink:0;margin-top:1px}
+  .tt{font-size:13px;font-weight:600}
+  .td{font-size:12px;color:hsl(var(--muted-foreground));margin-top:1px;line-height:1.4}
+  .tx{margin-left:auto;color:hsl(var(--muted-foreground))}
+  .tx svg{width:14px;height:14px}
+  .s svg{color:hsl(165 50% 58%)}
+  .i svg{color:hsl(220 70% 66%)}
+  .e svg{color:hsl(0 65% 66%)}
+  /* banner */
+  .banner{display:flex;align-items:center;gap:11px;border-radius:10px;padding:11px 14px;font-size:13px;margin-bottom:10px}
+  .banner svg{width:16px;height:16px;flex-shrink:0}
+  .banner .ba{margin-left:auto;font-weight:600;font-size:12.5px;cursor:pointer;white-space:nowrap}
+  .banner.prim{background:hsl(220 70% 55% / .14);border:1px solid hsl(220 70% 55% / .3);color:hsl(220 70% 74%)}
+  .banner.warnb{background:hsl(38 92% 52% / .12);border:1px solid hsl(38 92% 52% / .3);color:hsl(38 92% 66%)}
+  .dot{width:7px;height:7px;border-radius:50%;background:hsl(165 45% 48%);box-shadow:0 0 7px hsl(165 45% 48% / .7);flex-shrink:0}
+</style>
+</head>
+<body>
+  <div>
+    <div class="lab">Toasts — transient, top-right</div>
+    <div class="toast s"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg><div><div class="tt">Signed in</div><div class="td">Welcome back to APT.</div></div><span class="tx"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></div>
+    <div class="toast i"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><div><div class="tt">Export started</div><div class="td">We'll email you when it's ready.</div></div><span class="tx"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></div>
+    <div class="toast e"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><div><div class="tt">Upload failed</div><div class="td">File exceeds the 25 MB limit.</div></div><span class="tx"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></div>
+  </div>
+  <div>
+    <div class="lab">Banners — persistent, full-width</div>
+    <div class="banner prim"><span class="dot"></span> Pro trial active — 9 days left.<span class="ba">Upgrade →</span></div>
+    <div class="banner warnb"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Payment method expires soon.<span class="ba">Update →</span></div>
+  </div>
+</body>
+</html>

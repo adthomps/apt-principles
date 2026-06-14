@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Cards" subtitle="Default bordered vs glass/hero surface" viewport="700x250" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:22px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .card{border-radius:8px;border:1px solid hsl(var(--border));background:hsl(var(--card));padding:18px;box-shadow:var(--elevation-3)}
+  .ico{width:42px;height:42px;border-radius:9px;background:hsl(220 70% 55% / .1);color:hsl(220 70% 65%);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+  .ico svg{width:20px;height:20px}
+  .tt{font-size:17px;font-weight:600;letter-spacing:-.01em}
+  .dd{font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;margin-top:6px}
+  .glass{background:hsl(var(--card) / .5);backdrop-filter:blur(6px);box-shadow:var(--elevation-4);border-color:hsl(var(--border) / .6)}
+  .ft{margin-top:14px;padding-top:12px;border-top:1px solid hsl(var(--border));font-size:12px;color:hsl(220 70% 65%);font-weight:500}
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="card">
+      <div class="ico"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></div>
+      <div class="tt">Default card</div>
+      <div class="dd">Bordered surface for a single framed object.</div>
+      <div class="ft">View details →</div>
+    </div>
+    <div class="card glass">
+      <div class="ico"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M3 12h18"/></svg></div>
+      <div class="tt">Glass / hero</div>
+      <div class="dd">Translucent + blur + elevation-4 over cosmic bg.</div>
+      <div class="ft">Open proof →</div>
+    </div>
+  </div>
+</body>
+</html>

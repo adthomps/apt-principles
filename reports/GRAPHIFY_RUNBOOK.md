@@ -21,6 +21,36 @@ Use it to answer:
 
 Graphify complements `npm run validate` and `npm run sweep:project-profiles`. It does not replace deterministic validation gates.
 
+## Governance Recommendation
+
+Use Graphify as a curated knowledge-management layer for APT, not as a replacement for canonical docs, project context, validation scripts, or source-controlled decision records.
+
+APT should keep the Graphify operating workflow in `apt-principles` because this repo owns canonical doctrine, project adoption rules, validation expectations, portfolio-level reports, and cross-repo evidence review. Do not create a separate `apt-graphify-standards` repository unless Graphify becomes an independently versioned product with its own installers, fixtures, release cadence, and compatibility tests.
+
+Use `apt-agent-standards` for distribution guidance only: optional agent instructions, project-context prompts, ignore-policy reminders, and repo-local usage rules. That lets target repos participate in the APT graph without turning generated graph output into another source of truth.
+
+Ownership summary:
+
+| Area | Owner |
+| --- | --- |
+| APT-wide graph scripts, curated repo set, gap reports, and Graphify runbook | `apt-principles` |
+| Optional installed guidance for agents and repo-local graph participation notes | `apt-agent-standards` |
+| Product-specific architecture, sensitive-path exclusions, local project context, and graph exceptions | target repo |
+| Generated graph files, caches, HTML, cost files, and manifests | local operator workspace only |
+
+## Repo Participation Tiers
+
+Prioritize graph participation where cross-file and cross-repo relationships are hard to hold in working memory.
+
+| Tier | Repos | Why they benefit |
+| --- | --- | --- |
+| Core graph governance | `apt-principles`, `apt-agent-standards`, `applied-practical-thinking` | Doctrine, standards distribution, public publishing, generated docs, AI prompts, and cross-repo drift checks need traceable relationships. |
+| High-value product graphs | `apt-anet-integration-toolbox`, `apt-anet-accept-suite-toolbox`, `apt-coach`, `apt-commerce`, `apt-dream-to-reality`, `crt-world` | These combine app code, APIs, docs, prompts, integrations, and local APT evidence. Graph traversal can reveal implementation evidence and drift. |
+| Focused or periodic graphing | `apt-payment-rpc-api`, `apt-novel-reviewer`, `apt-design-reference`, `apt-issue-system` | These are smaller or more bounded, so graphing is useful for audits, migrations, and standards reviews rather than every routine change. |
+| Needs tighter filtering before broad graphing | `apt-exercise` | The repo has a large file surface and likely generated/dependency-heavy content. Build a narrow staging filter before including it in broad workspace runs. |
+
+When adding a repo to the default graph set, first run `npm run graphify:apt -- --stage-only --repos repo-name` and review the staged file count and obvious noisy paths. Update `.graphifyignore` or staging filters before running semantic extraction.
+
 ## What Was Added
 
 This repo now has a lightweight APT-wide Graphify workflow:
@@ -139,9 +169,10 @@ If you have higher limits and want faster extraction:
 npm run graphify:apt -- --max-concurrency 2 --token-budget 20000
 ```
 
-`graphify:apt` builds a temporary staging folder, `apt-graphify-workspace`, in the system temp directory and includes these repos:
+`graphify:apt` builds a temporary staging folder, `apt-graphify-workspace`, in the system temp directory and includes these repos by default:
 
 - `apt-principles`
+- `apt-agent-standards`
 - `applied-practical-thinking`
 - `apt-coach`
 - `apt-dream-to-reality`

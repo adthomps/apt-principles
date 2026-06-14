@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Selection controls" subtitle="Switch, checkbox (tri-state), radio, slider — focus & selection = primary" viewport="640x320" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:26px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 34px}
+  .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:hsl(var(--muted-foreground));font-weight:600;margin-bottom:15px}
+  .row{display:flex;align-items:center;gap:11px;font-size:13.5px;margin-bottom:13px}
+  .switch{width:40px;height:23px;border-radius:9999px;background:hsl(var(--secondary));position:relative;flex-shrink:0}
+  .switch::after{content:"";position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 1px 2px hsl(220 20% 4% / .4)}
+  .switch.on{background:hsl(var(--primary))}
+  .switch.on::after{left:20px}
+  .cbox{width:19px;height:19px;border-radius:5px;border:2px solid hsl(var(--border));flex-shrink:0;display:flex;align-items:center;justify-content:center;color:hsl(220 20% 99%)}
+  .cbox svg{width:13px;height:13px}
+  .cbox.on,.cbox.ind{background:hsl(var(--primary));border-color:hsl(var(--primary))}
+  .radio{width:19px;height:19px;border-radius:50%;border:2px solid hsl(var(--border));flex-shrink:0;display:flex;align-items:center;justify-content:center}
+  .radio.on{border-color:hsl(var(--primary))}
+  .radio.on::after{content:"";width:9px;height:9px;border-radius:50%;background:hsl(var(--primary))}
+  .slider input{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:9999px;background:linear-gradient(90deg,hsl(var(--primary)) 64%,hsl(var(--secondary)) 64%);outline:none;margin:8px 0}
+  .slider input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid hsl(var(--primary))}
+  .val{font-family:var(--font-mono);font-size:12px;color:hsl(220 70% 72%)}
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div>
+      <div class="lbl">Switch</div>
+      <div class="row"><span class="switch on"></span> On</div>
+      <div class="row"><span class="switch"></span> Off</div>
+    </div>
+    <div>
+      <div class="lbl">Checkbox</div>
+      <div class="row"><span class="cbox on"><svg fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Checked</div>
+      <div class="row"><span class="cbox ind"><svg fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14"/></svg></span> Indeterminate</div>
+      <div class="row"><span class="cbox"></span> Unchecked</div>
+    </div>
+    <div>
+      <div class="lbl">Radio</div>
+      <div class="row"><span class="radio on"></span> Selected</div>
+      <div class="row"><span class="radio"></span> Unselected</div>
+    </div>
+    <div>
+      <div class="lbl">Slider</div>
+      <div class="slider">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:hsl(var(--muted-foreground))"><span>Accent budget</span><span class="val">64%</span></div>
+        <input type="range" min="0" max="100" value="64">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

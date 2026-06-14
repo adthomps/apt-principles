@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Type" name="Display type" subtitle="Hero / h1 / h2 with real responsive px ranges" viewport="700x240" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:24px}
+  .spec{display:flex;align-items:baseline;gap:16px;padding:8px 0;border-bottom:1px solid hsl(var(--border) / .5)}
+  .spec:last-child{border:0}
+  .tag{font-family:var(--font-mono);font-size:10.5px;color:hsl(var(--muted-foreground));width:150px;flex-shrink:0;line-height:1.4}
+  .tag b{color:hsl(220 70% 65%);font-weight:400}
+  .hero{font-size:40px;font-weight:700;letter-spacing:-.02em;line-height:1}
+  .h1{font-size:30px;font-weight:700;letter-spacing:-.02em}
+  .h2{font-size:24px;font-weight:600;letter-spacing:-.01em}
+  .note{font-size:11.5px;color:hsl(var(--muted-foreground));margin-top:14px;line-height:1.5}
+  .note b{color:hsl(220 10% 95%)}
+</style>
+</head>
+<body>
+  <div class="spec"><span class="tag">hero · 700<br><b>36 → 60px</b> (4xl→6xl)</span><span class="hero">Systems over screens</span></div>
+  <div class="spec"><span class="tag">h1 · 700<br><b>30 → 36px</b> (3xl→4xl)</span><span class="h1">Decisions over demos</span></div>
+  <div class="spec"><span class="tag">h2 · 600<br><b>24 → 30px</b> (2xl→3xl)</span><span class="h2">Applied Practical Thinking</span></div>
+  <div class="note"><b>Hero is responsive, not fixed.</b> It clamps 36→60px (mobile→desktop); the page
+    brand mark goes a touch larger (48→72px). Shown here near the mid-point — large but
+    measured, in keeping with "structure over decoration".</div>
+</body>
+</html>

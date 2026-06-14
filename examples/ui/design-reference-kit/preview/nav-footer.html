@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Footer / bottom nav" subtitle="Compact footer — brand, link groups, legal row" viewport="700x230" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);font-family:var(--font-sans);color:hsl(220 10% 95%);padding:0}
+  .footer{border-top:1px solid hsl(var(--border) / .6);background:hsl(var(--card))}
+  .inner{padding:22px 24px 0;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .em{width:30px;height:30px;border-radius:50%;border:1px solid hsl(220 70% 55% / .6);background:hsl(220 20% 8% / .8);
+    color:hsl(220 70% 62%);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px}
+  .eyebrow{font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:hsl(var(--muted-foreground))}
+  .name{font-size:14px;font-weight:700;letter-spacing:-.01em}
+  .desc{font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.55;margin:13px 0 0;max-width:300px}
+  h3{font-size:13px;font-weight:600;margin:0 0 11px}
+  ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  li{font-size:12.5px;color:hsl(var(--muted-foreground))}
+  .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    margin:24px 24px 0;padding:16px 0;border-top:1px solid hsl(var(--border) / .6);
+    font-size:11.5px;color:hsl(var(--muted-foreground))}
+</style>
+</head>
+<body>
+  <div class="footer">
+    <div class="inner">
+      <div>
+        <div class="brand"><span class="em">A</span><div><div class="eyebrow">Applied Practical Thinking</div><div class="name">APT</div></div></div>
+        <p class="desc">Operational portfolio and reference space for practical systems, product decisions, and implementation patterns.</p>
+      </div>
+      <div>
+        <h3>Navigation</h3>
+        <ul><li>Home</li><li>Labs</li><li>Proof</li><li>Principles</li><li>Insights</li></ul>
+      </div>
+      <div>
+        <h3>Resources</h3>
+        <ul><li>Applied Visual Gallery</li><li>GitHub</li><li>LinkedIn</li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Adam Thompson. Applied Practical Thinking.</span>
+      <span style="font-size:11px">This is a demonstration, not a production system.</span>
+    </div>
+  </div>
+</body>
+</html>

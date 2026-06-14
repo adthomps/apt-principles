@@ -16,16 +16,16 @@ Use examples when a principle needs a reusable pattern, sample contract, state m
 
 ### Active
 
-- `ai-agent/` - prompt contracts and agent boundaries
+- `ai-agent/` - prompt contracts, agent boundaries, and evaluation cases
 - `api/` - API contracts, errors, pagination
-- `architecture/` - repo and deployment structure
-- `knowledge/` - canonical documentation and drift-control patterns
+- `architecture/` - repo structure, deployment structure, ownership, and command matrices
+- `knowledge/` - canonical documentation, drift-control, and incident-learning patterns
 - `projects/` - real APT project profiles and showcase patterns
-- `quality/` - validation plans and evidence patterns
-- `security/` - auth, sessions, MFA
-- `thinking/` - problem framing and decision clarity
+- `quality/` - validation plans, validation matrices, and evidence patterns
+- `security/` - auth, sessions, MFA, trust boundaries, and threat review
+- `thinking/` - problem framing, outcome evidence, and decision clarity
 - `ui/` - layout and interaction patterns
-- `workflows/` - spec, preview, release flows
+- `workflows/` - spec, delivery increment, preview, release, and operations flows
 
 ### Planned (placeholder directories, no content yet)
 

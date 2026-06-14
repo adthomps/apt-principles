@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Badges & status" subtitle="Semantic labels + service-health dots; color carries meaning only" viewport="640x300" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:26px;display:flex;flex-direction:column;gap:26px}
+  .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:hsl(var(--muted-foreground));font-weight:600;margin-bottom:14px}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .badge{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 9px;border-radius:6px;font-size:11.5px;font-weight:600}
+  .badge svg{width:12px;height:12px}
+  .neutral{background:hsl(var(--secondary));color:hsl(220 11% 75%);border:1px solid hsl(var(--border))}
+  .primary{background:hsl(var(--primary) / .14);color:hsl(220 70% 74%)}
+  .success{background:hsl(165 45% 42% / .15);color:hsl(165 50% 60%)}
+  .warning{background:hsl(38 92% 50% / .15);color:hsl(38 92% 62%)}
+  .danger{background:hsl(0 65% 50% / .14);color:hsl(0 65% 70%)}
+  .accent{background:hsl(280 55% 55% / .15);color:hsl(280 60% 74%)}
+  .pill{border-radius:9999px;padding:0 11px}
+  .statusrow{display:flex;gap:22px;flex-wrap:wrap}
+  .statusdot{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:hsl(220 12% 82%)}
+  .statusdot i{width:8px;height:8px;border-radius:50%}
+  .statusdot i.ok{background:hsl(165 50% 50%);box-shadow:0 0 0 3px hsl(165 50% 50% / .18)}
+  .statusdot i.warn{background:hsl(38 92% 55%);box-shadow:0 0 0 3px hsl(38 92% 55% / .18)}
+  .statusdot i.err{background:hsl(0 65% 58%);box-shadow:0 0 0 3px hsl(0 65% 58% / .18)}
+  .statusdot i.idle{background:hsl(var(--muted-foreground))}
+  svg.i{display:block}
+</style>
+</head>
+<body>
+  <div>
+    <div class="lbl">Badges</div>
+    <div class="row" style="margin-bottom:10px">
+      <span class="badge neutral">Draft</span>
+      <span class="badge primary">Beta</span>
+      <span class="badge success"><svg class="i" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Passing</span>
+      <span class="badge warning"><svg class="i" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Review</span>
+      <span class="badge danger">Failing</span>
+      <span class="badge accent">Section</span>
+    </div>
+    <div class="row">
+      <span class="badge primary pill">v2.4</span>
+      <span class="badge neutral pill">12 systems</span>
+      <span class="badge success pill">Live</span>
+    </div>
+  </div>
+  <div>
+    <div class="lbl">Service status</div>
+    <div class="statusrow">
+      <span class="statusdot"><i class="ok"></i> Operational</span>
+      <span class="statusdot"><i class="warn"></i> Degraded</span>
+      <span class="statusdot"><i class="err"></i> Outage</span>
+      <span class="statusdot"><i class="idle"></i> Paused</span>
+    </div>
+  </div>
+</body>
+</html>

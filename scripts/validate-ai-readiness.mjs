@@ -7,8 +7,8 @@
  *   0  None        — no AI configuration found
  *   1  Minimal     — AGENTS.md present with content
  *   2  Configured  — AGENTS.md + copilot-instructions + .github/agents/
- *   3  Active      — ≥3 domain agents + skills + prompts + .claude/CLAUDE.md
- *   4  Optimizing  — agent frontmatter valid + .codex configured
+ *   3  Active      — ≥3 domain agents + skills + prompts + APT adoption context
+ *   4  Optimizing  — valid agent frontmatter + agent standards contract or manifest
  *
  * Usage:
  *   node scripts/validate-ai-readiness.mjs
@@ -276,71 +276,45 @@ const CHECKS = [
     },
   },
 
-  // ── Category 3: Claude Code ────────────────────────────────────────────────
+  // ── Category 3: Agent Standards Distribution ───────────────────────────────
   {
-    id: "claude-md",
-    category: "Claude Code",
-    label: ".claude/CLAUDE.md present and non-empty",
+    id: "agent-standards-contract-or-manifest",
+    category: "Agent Standards Distribution",
+    label: "APT agent standards contract or manifest present",
     level: 3,
     required: false,
     run(root) {
-      if (!exists(root, ".claude/CLAUDE.md")) {
-        return { pass: false, detail: ".claude/CLAUDE.md not found" };
+      if (exists(root, "references/agent-standards-contract.json")) {
+        return { pass: true, detail: "references/agent-standards-contract.json" };
       }
-      const chars = charCount(root, ".claude/CLAUDE.md");
-      const ok = chars >= 100;
-      return { pass: ok, detail: ok ? `${chars} chars` : `only ${chars} chars (need ≥100)` };
+      if (exists(root, ".agent-standards.json")) {
+        return { pass: true, detail: ".agent-standards.json" };
+      }
+      return { pass: false, detail: "no local contract or .agent-standards.json found" };
     },
   },
   {
-    id: "claude-agents",
-    category: "Claude Code",
-    label: ".claude/agents/ has template agents",
+    id: "agent-standards-project-context",
+    category: "Agent Standards Distribution",
+    label: "docs/project-context.md present for installed standards",
     level: 3,
     required: false,
     run(root) {
-      const count = countMdFiles(root, ".claude/agents");
-      return { pass: count >= 1, detail: `${count} agent template(s)` };
+      if (exists(root, ".agent-standards.json")) {
+        const ok = exists(root, "docs/project-context.md");
+        return { pass: ok, detail: ok ? "docs/project-context.md" : "missing docs/project-context.md" };
+      }
+      return { pass: true, detail: "not installed through apt-agent-standards" };
     },
   },
   {
-    id: "claude-skills",
-    category: "Claude Code",
-    label: ".claude/skills/ has template skills",
-    level: 3,
-    required: false,
-    run(root) {
-      const count = countSkillDirs(root, ".claude/skills");
-      return { pass: count >= 1, detail: `${count} skill template(s)` };
-    },
-  },
-
-  // ── Category 4: Codex ─────────────────────────────────────────────────────
-  {
-    id: "codex-config",
-    category: "Codex",
-    label: ".codex/config.toml present and non-empty",
+    id: "agent-standards-tooling-note",
+    category: "Agent Standards Distribution",
+    label: "Cross-tool files managed by apt-agent-standards",
     level: 4,
     required: false,
     run(root) {
-      if (!exists(root, ".codex/config.toml")) {
-        return { pass: false, detail: ".codex/config.toml not found" };
-      }
-      const chars = charCount(root, ".codex/config.toml");
-      return { pass: chars >= 10, detail: chars >= 10 ? "configured" : "file is nearly empty" };
-    },
-  },
-  {
-    id: "codex-prompts",
-    category: "Codex",
-    label: ".codex/prompts/ has at least 1 prompt",
-    level: 4,
-    required: false,
-    run(root) {
-      const count = listDir(root, ".codex/prompts").filter(
-        (e) => e.isFile() && e.name.endsWith(".md")
-      ).length;
-      return { pass: count >= 1, detail: `${count} prompt(s)` };
+      return { pass: true, detail: "use sibling apt-agent-standards for .claude, .codex, and .github distribution" };
     },
   },
 
@@ -536,51 +510,11 @@ function runFix(root, aptSource) {
     log(a.action, rel || a.path, a.reason);
   }
 
-  // Claude Code
-  tryEnsureDir(".claude");
-  const claudeMd = copyFileSafe(
-    path.join(aptSource, ".claude/CLAUDE.md"),
-    path.join(root, ".claude/CLAUDE.md")
+  log(
+    "info",
+    "apt-agent-standards",
+    "Use ../apt-agent-standards for Claude, Codex, Copilot, manifest, and project-context distribution."
   );
-  log(claudeMd.action, ".claude/CLAUDE.md", claudeMd.reason);
-
-  tryEnsureDir(".claude/agents");
-  const claudeAgentActions = copyDirSafe(
-    path.join(aptSource, ".claude/agents"),
-    path.join(root, ".claude/agents")
-  );
-  for (const a of claudeAgentActions) {
-    const rel = path.relative(root, a.path ?? "").replaceAll("\\", "/");
-    log(a.action, rel || a.path, a.reason);
-  }
-
-  tryEnsureDir(".claude/skills");
-  const claudeSkillActions = copyDirSafe(
-    path.join(aptSource, ".claude/skills"),
-    path.join(root, ".claude/skills")
-  );
-  for (const a of claudeSkillActions) {
-    const rel = path.relative(root, a.path ?? "").replaceAll("\\", "/");
-    log(a.action, rel || a.path, a.reason);
-  }
-
-  // Codex
-  tryEnsureDir(".codex");
-  const codexConfig = copyFileSafe(
-    path.join(aptSource, ".codex/config.toml"),
-    path.join(root, ".codex/config.toml")
-  );
-  log(codexConfig.action, ".codex/config.toml", codexConfig.reason);
-
-  tryEnsureDir(".codex/prompts");
-  const codexPromptActions = copyDirSafe(
-    path.join(aptSource, ".codex/prompts"),
-    path.join(root, ".codex/prompts")
-  );
-  for (const a of codexPromptActions) {
-    const rel = path.relative(root, a.path ?? "").replaceAll("\\", "/");
-    log(a.action, rel || a.path, a.reason);
-  }
 
   // APT Adoption stub
   const adoptionResult = createAdoptionStub(root);
@@ -631,8 +565,9 @@ function printConsole(root, results, score, date) {
       const tag = g.required ? "[required]" : "[recommended]";
       process.stdout.write(`  ${tag} ${g.label} — ${g.detail}\n`);
     }
-    process.stdout.write(`\nTo scaffold missing files from apt-principles templates:\n`);
+    process.stdout.write(`\nTo scaffold GitHub-oriented files from apt-principles templates:\n`);
     process.stdout.write(`  node scripts/validate-ai-readiness.mjs --repo-root <path> --fix\n`);
+    process.stdout.write(`For Claude, Codex, Copilot distribution, run apt-agent-standards install/sync workflows.\n`);
   } else {
     process.stdout.write(`\nAll checks pass. Repository is AI-ready.\n`);
   }
@@ -657,8 +592,8 @@ function buildJson(root, results, score) {
     if (g.id === "github-agents-frontmatter") return "Add name:, description:, and tools: frontmatter to .github/agents/*.agent.md files";
     if (g.id === "github-skills") return "Add skills to .github/skills/ — run --fix to scaffold recommended skills";
     if (g.id === "github-prompts") return "Add prompts to .github/prompts/ — run --fix to scaffold";
-    if (g.id === "claude-md") return "Create .claude/CLAUDE.md with project context — run --fix to scaffold";
-    if (g.id === "codex-config") return "Create .codex/config.toml — run --fix to scaffold";
+    if (g.id === "agent-standards-contract-or-manifest") return "Use apt-agent-standards to install .agent-standards.json, or keep the doctrine contract in apt-principles";
+    if (g.id === "agent-standards-project-context") return "Fill docs/project-context.md in the target repo after installing apt-agent-standards";
     if (g.id === "apt-adoption") return "Create docs/apt/adoption.md — run --fix to create a stub";
     if (g.id === "contributing-md") return "Create CONTRIBUTING.md — copy from apt-principles/templates/CONTRIBUTING.md";
     return `Fix: ${g.label}`;
@@ -726,10 +661,11 @@ function buildReport(root, results, score, date) {
     }
 
     sections.push("", "## Next Steps", "");
-    sections.push("Run the following to scaffold missing files from apt-principles templates:", "");
+    sections.push("Run the following to scaffold GitHub-oriented files from apt-principles templates:", "");
     sections.push("```bash");
     sections.push("node scripts/validate-ai-readiness.mjs --repo-root <path> --fix");
     sections.push("```", "");
+    sections.push("Use `apt-agent-standards` for Claude, Codex, Copilot, manifest, and project-context distribution.", "");
     sections.push("Then re-run to confirm score:", "");
     sections.push("```bash");
     sections.push("node scripts/validate-ai-readiness.mjs --repo-root <path>");
@@ -812,7 +748,7 @@ function printHelp() {
     "  --apt-source <path>  apt-principles root for templates (default: auto-detected)",
     "  --json               Output results as JSON",
     "  --report             Write Markdown report to docs/apt/reports/",
-    "  --fix                Scaffold missing files from apt-principles templates",
+    "  --fix                Scaffold GitHub-oriented files from apt-principles templates",
     "                       (requires --repo-root; refuses to run against apt-principles itself)",
     "  --help, -h           Show this help",
     "",
@@ -820,8 +756,8 @@ function printHelp() {
     "  0  None        — no AI configuration found",
     "  1  Minimal     — AGENTS.md present with content",
     "  2  Configured  — AGENTS.md + copilot-instructions + .github/agents/",
-    "  3  Active      — ≥3 domain agents + skills + prompts + .claude/CLAUDE.md",
-    "  4  Optimizing  — agent frontmatter valid + .codex configured",
+    "  3  Active      — ≥3 domain agents + skills + prompts + APT adoption context",
+    "  4  Optimizing  — valid agent frontmatter + agent standards contract or manifest",
   ].join("\n") + "\n");
 }
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="KPI stat tiles" subtitle="Metric tiles with sparklines, delta + drill-in links" viewport="700x215" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:22px}
+  .row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .tile{border:1px solid hsl(var(--border));background:hsl(var(--card));border-radius:11px;padding:15px 16px;box-shadow:var(--elevation-2)}
+  .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:hsl(var(--muted-foreground));font-weight:600}
+  .v{font-size:25px;font-weight:700;letter-spacing:-.02em;margin-top:6px}
+  .d{font-size:11.5px;font-weight:600;margin-top:2px;display:inline-flex;align-items:center;gap:4px}
+  .up{color:hsl(165 50% 58%)}
+  .down{color:hsl(0 65% 64%)}
+  .d svg{width:12px;height:12px}
+  .spark{margin-top:10px}
+  .drill{display:flex;align-items:center;justify-content:space-between;margin-top:11px;padding-top:10px;
+    border-top:1px solid hsl(var(--border) / .7);font-size:11.5px;font-weight:500;color:hsl(220 70% 64%);cursor:pointer}
+  .drill:hover{color:hsl(220 80% 72%)}
+  .drill svg{width:13px;height:13px;transition:transform .15s ease}
+  .drill:hover svg{transform:translateX(2px)}
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="tile">
+      <div class="k">Decisions logged</div>
+      <div class="v">342</div>
+      <div class="d up"><svg fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>+18%</div>
+      <svg class="spark" width="100%" height="34" viewBox="0 0 160 34" preserveAspectRatio="none"><polyline points="0,28 26,24 52,26 78,18 104,20 130,10 160,6" fill="none" stroke="hsl(220 70% 60%)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="drill"><span>View by surface</span><svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+    <div class="tile">
+      <div class="k">Reuse rate</div>
+      <div class="v">76%</div>
+      <div class="d up"><svg fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>+6%</div>
+      <svg class="spark" width="100%" height="34" viewBox="0 0 160 34" preserveAspectRatio="none"><polyline points="0,22 26,24 52,18 78,20 104,14 130,16 160,10" fill="none" stroke="hsl(165 45% 52%)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="drill"><span>View breakdown</span><svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+    <div class="tile">
+      <div class="k">Open exceptions</div>
+      <div class="v">9</div>
+      <div class="d down"><svg fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>-3</div>
+      <svg class="spark" width="100%" height="34" viewBox="0 0 160 34" preserveAspectRatio="none"><polyline points="0,10 26,14 52,12 78,18 104,16 130,22 160,26" fill="none" stroke="hsl(30 75% 55%)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="drill"><span>Review open items</span><svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Alerts — inline" subtitle="Info / success / warning / error inline alerts" viewport="700x290" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:22px}
+  .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:hsl(var(--muted-foreground));font-weight:600;margin-bottom:10px}
+  .alert{display:flex;gap:11px;border-radius:10px;padding:12px 14px;border:1px solid;margin-bottom:10px;align-items:flex-start}
+  .alert svg{width:17px;height:17px;flex-shrink:0;margin-top:1px}
+  .at{font-size:13px;font-weight:600;line-height:1.3}
+  .ad{font-size:12.5px;line-height:1.45;margin-top:2px;color:hsl(220 12% 80%)}
+  .ax{color:hsl(var(--muted-foreground));cursor:pointer}
+  .ax svg{width:15px;height:15px}
+  .body{flex:1}
+  .info{border-color:hsl(220 70% 55% / .35);background:hsl(220 70% 55% / .1)}
+  .info>svg{color:hsl(220 70% 66%)}
+  .success{border-color:hsl(165 45% 42% / .4);background:hsl(165 45% 42% / .1)}
+  .success>svg{color:hsl(165 50% 58%)}
+  .warn{border-color:hsl(38 92% 52% / .4);background:hsl(38 92% 52% / .1)}
+  .warn>svg{color:hsl(38 92% 60%)}
+  .error{border-color:hsl(0 65% 52% / .4);background:hsl(0 65% 52% / .1)}
+  .error>svg{color:hsl(0 65% 66%)}
+</style>
+</head>
+<body>
+  <div class="lab">Inline alerts — info · success · warning · error</div>
+  <div class="alert info"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><div class="body"><div class="at">Heads up</div><div class="ad">A new version of the design tokens is available.</div></div><span class="ax"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></div>
+  <div class="alert success"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg><div class="body"><div class="at">Changes saved</div><div class="ad">Your settings were updated successfully.</div></div></div>
+  <div class="alert warn"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="body"><div class="at">You have unsaved changes</div><div class="ad">Save before leaving this page.</div></div></div>
+  <div class="alert error"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><div class="body"><div class="at">Couldn't sign in</div><div class="ad">Check your email and password, then try again.</div></div><span class="ax"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></div>
+</body>
+</html>

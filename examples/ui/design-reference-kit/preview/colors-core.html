@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Colors" name="Core surfaces" subtitle="Navy base, card, secondary, muted, border, foreground" viewport="700x150" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);font-family:var(--font-sans);color:hsl(var(--foreground));padding:22px}
+  .row{display:flex;gap:14px}
+  .sw{flex:1;border-radius:10px;border:1px solid hsl(var(--border));overflow:hidden;display:flex;flex-direction:column}
+  .chip{height:62px}
+  .meta{padding:8px 10px;background:hsl(var(--card))}
+  .name{font-size:12.5px;font-weight:600;letter-spacing:0}
+  .val{font-size:11px;color:hsl(var(--muted-foreground));font-family:var(--font-mono);margin-top:2px}
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:hsl(220 20% 8%)"></div><div class="meta"><div class="name">background</div><div class="val">220 20% 8%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(220 18% 12%)"></div><div class="meta"><div class="name">card</div><div class="val">220 18% 12%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(220 15% 18%)"></div><div class="meta"><div class="name">secondary</div><div class="val">220 15% 18%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(220 15% 15%)"></div><div class="meta"><div class="name">muted</div><div class="val">220 15% 15%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(220 15% 20%)"></div><div class="meta"><div class="name">border</div><div class="val">220 15% 20%</div></div></div>
+    <div class="sw"><div class="chip" style="background:hsl(220 10% 95%)"></div><div class="meta"><div class="name">foreground</div><div class="val">220 10% 95%</div></div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Spacing" name="Motion" subtitle="Calm durations + APT easing" viewport="700x190" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:24px}
+  .lab{font-size:11px;color:hsl(var(--muted-foreground));margin-bottom:14px;text-transform:uppercase;letter-spacing:.12em}
+  .track{position:relative;height:8px;border-radius:4px;background:hsl(var(--muted));overflow:hidden;margin:7px 0}
+  .fill{position:absolute;inset:0 auto 0 0;border-radius:4px;background:hsl(220 70% 55%)}
+  .r{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:center;margin-bottom:6px}
+  .k{font-size:12px}.k span{color:hsl(var(--muted-foreground));font-family:var(--font-mono);font-size:10.5px}
+  .ease{margin-top:14px;font-size:11.5px;color:hsl(var(--muted-foreground));font-family:var(--font-mono)}
+</style>
+</head>
+<body>
+  <div class="lab">Motion — calm only</div>
+  <div class="r"><div class="k">fast <span>140ms</span></div><div class="track"><div class="fill anim" style="animation:slideF 1.4s var(--ease-apt) infinite alternate"></div></div></div>
+  <div class="r"><div class="k">normal <span>220ms</span></div><div class="track"><div class="fill" style="animation:slideF 2.2s var(--ease-apt) infinite alternate"></div></div></div>
+  <div class="r"><div class="k">slow <span>360ms</span></div><div class="track"><div class="fill" style="animation:slideF 3.6s var(--ease-apt) infinite alternate"></div></div></div>
+  <div class="ease">cubic-bezier(0.2, 0.8, 0.2, 1) · fade &amp; lift only — no bounce</div>
+  <style>@keyframes slideF{from{width:8%}to{width:100%}}</style>
+</body>
+</html>

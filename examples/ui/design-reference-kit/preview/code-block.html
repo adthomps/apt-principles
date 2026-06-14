@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Code block" subtitle="Language tabs + copy; IBM Plex Mono with chart-ramp token colors" viewport="640x300" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:26px;display:flex;align-items:center}
+  .code{border:1px solid hsl(var(--border));border-radius:12px;overflow:hidden;background:hsl(220 22% 9%);width:100%}
+  .bar{display:flex;align-items:center;gap:2px;padding:7px 8px 0 10px;border-bottom:1px solid hsl(var(--border) / .7);background:hsl(220 20% 10%)}
+  .bar button{border:0;background:transparent;color:hsl(var(--muted-foreground));font-family:var(--font-mono);font-size:12px;padding:7px 12px;border-radius:7px 7px 0 0;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .bar button.on{color:hsl(var(--foreground));border-bottom-color:hsl(var(--primary))}
+  .copy{margin-left:auto;margin-bottom:4px;height:28px;padding:0 10px;border-radius:7px;border:1px solid hsl(var(--border));background:hsl(var(--card));color:hsl(var(--muted-foreground));font-size:11.5px;font-weight:500;display:inline-flex;align-items:center;gap:6px;font-family:inherit}
+  .copy svg{width:13px;height:13px}
+  pre{margin:0;padding:15px 16px;overflow-x:auto;font-family:var(--font-mono);font-size:12.5px;line-height:1.7;color:hsl(220 12% 84%)}
+  .key{color:hsl(280 60% 74%)}
+  .str{color:hsl(165 50% 62%)}
+  .fn{color:hsl(220 70% 72%)}
+</style>
+</head>
+<body>
+  <div class="code">
+    <div class="bar">
+      <button>cURL</button>
+      <button class="on">JavaScript</button>
+      <button>Python</button>
+      <button class="copy"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+    </div>
+    <pre><code><span class="key">import</span> { apt } <span class="key">from</span> <span class="str">"@apt/sdk"</span>;
+
+<span class="key">const</span> decision = <span class="key">await</span> apt.decisions.<span class="fn">create</span>({
+  system: <span class="str">"payments"</span>,
+  choice: <span class="str">"idempotent-retries"</span>,
+});</code></pre>
+  </div>
+</body>
+</html>

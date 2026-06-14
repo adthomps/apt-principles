@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Form inputs" subtitle="Field states incl. required & invalid; focus ring = primary" viewport="700x330" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:24px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}
+  label{font-size:12px;color:hsl(var(--muted-foreground));display:block;margin-bottom:6px}
+  label .req{color:hsl(0 65% 62%);margin-left:2px}
+  input{width:100%;box-sizing:border-box;height:40px;border-radius:6px;border:1px solid hsl(var(--input));background:hsl(220 18% 12%);color:hsl(220 10% 95%);padding:0 12px;font-size:14px;font-family:var(--font-sans);outline:none}
+  input::placeholder{color:hsl(var(--muted-foreground))}
+  input.focus{border-color:hsl(220 70% 55%);box-shadow:0 0 0 2px hsl(220 70% 55% / .35)}
+  input.invalid{border-color:hsl(0 65% 52%);box-shadow:0 0 0 2px hsl(0 65% 52% / .3)}
+  input:disabled{opacity:.5}
+  .hint{font-size:11px;margin-top:5px;display:flex;align-items:center;gap:5px}
+  .hint.err{color:hsl(0 65% 64%)}
+  .hint.ok{color:hsl(var(--muted-foreground))}
+  .hint svg{width:13px;height:13px}
+  .toggle{width:42px;height:24px;border-radius:9999px;background:hsl(220 70% 55%);position:relative}
+  .toggle::after{content:"";position:absolute;top:3px;left:21px;width:18px;height:18px;border-radius:50%;background:#fff}
+  .toggle.off{background:hsl(var(--secondary))}
+  .toggle.off::after{left:3px}
+  .frow{display:flex;align-items:center;gap:10px;margin-top:20px}
+  .frow span{font-size:13px}
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div>
+      <label>Default</label>
+      <input placeholder="you@example.com">
+    </div>
+    <div>
+      <label>Focused <span style="color:hsl(220 70% 65%)">· ring = primary</span></label>
+      <input class="focus" value="systems@apt.dev">
+    </div>
+    <div>
+      <label>Required <span class="req">*</span></label>
+      <input placeholder="Project name">
+      <div class="hint ok">Required to continue</div>
+    </div>
+    <div>
+      <label>Invalid <span class="req">*</span></label>
+      <input class="invalid" value="systems@apt">
+      <div class="hint err">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Enter a valid email address
+      </div>
+    </div>
+    <div>
+      <label>Filled</label>
+      <input value="Decision-Driven Development">
+    </div>
+    <div>
+      <label>Disabled</label>
+      <input disabled value="Read only">
+    </div>
+  </div>
+  <div class="frow"><div class="toggle"></div><span>Enabled</span><div class="toggle off" style="margin-left:18px"></div><span>Off</span></div>
+</body>
+</html>

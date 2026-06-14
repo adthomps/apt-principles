@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Chart — trend (compare)" subtitle="This vs prior period, dual line + teal insight callout" viewport="700x290" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:22px}
+  .card{border:1px solid hsl(var(--border));background:hsl(var(--card));border-radius:12px;padding:20px;box-shadow:var(--elevation-3)}
+  .top{display:flex;align-items:flex-start;justify-content:space-between}
+  .eyebrow{font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:hsl(var(--muted-foreground));font-weight:600}
+  .kpi{font-size:28px;font-weight:700;letter-spacing:-.02em;margin-top:5px;display:flex;align-items:baseline;gap:10px}
+  .kpi .vs{font-size:13px;font-weight:500;color:hsl(var(--muted-foreground))}
+  .legend{display:flex;flex-direction:column;gap:6px;font-size:11px;color:hsl(var(--muted-foreground));text-align:right}
+  .legend span{display:flex;align-items:center;gap:7px;justify-content:flex-end}
+  .legend i{display:inline-block;width:14px;height:0;border-top:2.5px solid}
+  .legend i.dash{border-top-style:dashed;border-color:hsl(220 12% 50%)}
+  .legend i.solid{border-color:hsl(220 70% 60%)}
+  .chart{margin-top:10px}
+  .axis{display:flex;justify-content:space-between;font-size:10px;color:hsl(var(--muted-foreground));font-family:var(--font-mono);margin-top:6px}
+  .insight{display:flex;align-items:center;gap:9px;margin-top:14px;padding:10px 12px;border-radius:9px;
+    background:hsl(165 45% 40% / .1);border:1px solid hsl(165 45% 40% / .3)}
+  .insight svg{width:15px;height:15px;color:hsl(165 50% 58%);flex-shrink:0}
+  .insight p{margin:0;font-size:12px;color:hsl(220 12% 82%);line-height:1.4}
+  .insight b{color:hsl(165 50% 62%)}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="top">
+      <div>
+        <div class="eyebrow">Active systems — this period vs prior</div>
+        <div class="kpi">1,284 <span class="vs">vs 1,142</span></div>
+      </div>
+      <div class="legend">
+        <span><i class="solid"></i> This period</span>
+        <span><i class="dash"></i> Prior period</span>
+      </div>
+    </div>
+    <div class="chart">
+      <svg width="100%" height="118" viewBox="0 0 560 118" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="hsl(220 70% 55%)" stop-opacity="0.32"/>
+            <stop offset="100%" stop-color="hsl(220 70% 55%)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,90 L80,80 L160,86 L240,58 L320,62 L400,40 L480,44 L560,20 L560,118 L0,118 Z" fill="url(#fill)"/>
+        <polyline points="0,98 80,96 160,88 240,90 320,74 400,78 480,66 560,58" fill="none" stroke="hsl(220 12% 52%)" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+        <polyline points="0,90 80,80 160,86 240,58 320,62 400,40 480,44 560,20" fill="none" stroke="hsl(220 70% 60%)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="560" cy="20" r="4" fill="hsl(220 70% 65%)"/>
+        <circle cx="560" cy="58" r="3" fill="hsl(220 12% 55%)"/>
+      </svg>
+    </div>
+    <div class="axis"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span></div>
+    <div class="insight">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <p><b>Insight:</b> the gap widened in W4 and held — this period is running <b>+12.4%</b> ahead of prior, driven by the Review stage.</p>
+    </div>
+  </div>
+</body>
+</html>

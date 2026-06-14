@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Spacing" name="Border radii" subtitle="App base 0.5rem, soft doctrine scale, pill" viewport="700x150" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url("../colors_and_type.css");
+  html,body{margin:0}
+  body{background:hsl(220 20% 8%);color:hsl(220 10% 95%);font-family:var(--font-sans);padding:24px}
+  .row{display:flex;gap:16px;align-items:flex-end}
+  .item{flex:1;text-align:center}
+  .box{height:64px;background:hsl(var(--card));border:1px solid hsl(var(--border))}
+  .name{font-size:12px;font-weight:600;margin-top:9px}
+  .val{font-size:10.5px;color:hsl(var(--muted-foreground));font-family:var(--font-mono);margin-top:2px}
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="border-radius:2px"></div><div class="name">sm</div><div class="val">calc(r−4px)</div></div>
+    <div class="item"><div class="box" style="border-radius:6px"></div><div class="name">md · base</div><div class="val">0.5rem</div></div>
+    <div class="item"><div class="box" style="border-radius:13.6px"></div><div class="name">soft-md</div><div class="val">0.85–1.1rem</div></div>
+    <div class="item"><div class="box" style="border-radius:21.6px"></div><div class="name">soft-lg</div><div class="val">1.35rem</div></div>
+    <div class="item"><div class="box" style="border-radius:9999px"></div><div class="name">pill</div><div class="val">9999px</div></div>
+  </div>
+</body>
+</html>

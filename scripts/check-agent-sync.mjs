@@ -1,123 +1,85 @@
 #!/usr/bin/env node
 
 /**
- * Detects content drift between shared skills across .claude/, .codex/, and .github/ namespaces.
- *
- * The four skills that exist in all three namespaces should stay semantically aligned.
- * This script warns when a namespace copy has drifted significantly from the canonical
- * .github/skills/ version (measured by word count and key-phrase overlap).
+ * Validates the doctrine/distribution contract between apt-principles and
+ * apt-agent-standards without expecting tool-native Claude/Codex/Copilot copies
+ * to live in this repository.
  */
 
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 
-const SHARED_SKILLS = [
-  "api-first-openapi-designer",
-  "cloudflare-hono-worker-builder",
-  "docs-kb-maintainer",
-  "testing-validation-runner",
+const root = process.cwd();
+const contractPath = path.join(root, "references", "agent-standards-contract.json");
+const requiredReferences = [
+  "apt-principles/ai-agent-framework.md",
+  "apt-principles/checklists/ai-agent-review-checklist.md",
+  "apt-principles/prompts/apt-one-shot-build-prompt.md",
+  "apt-principles/references/ai-review-bundle.json",
+];
+const requiredValidation = [
+  "node scripts/detect-profiles.mjs --target <repo> --json",
+  "node scripts/install-agent-standards.mjs --target <repo> --profiles <profiles> --dry-run",
+  "node scripts/sync-agent-standards.mjs --target <repo> --dry-run",
+  "node scripts/check-ai-tool-parity.mjs",
 ];
 
-const NAMESPACES = [
-  { name: ".claude/skills", dir: ".claude/skills" },
-  { name: ".codex/skills", dir: ".codex/skills" },
-];
-
-const CANONICAL_DIR = ".github/skills";
-
-function readSkill(root, dir, skill) {
-  const filePath = path.join(root, dir, skill, "SKILL.md");
-  if (!fs.existsSync(filePath)) {
-    return { exists: false, content: "", wordCount: 0, path: filePath };
-  }
-  const content = fs.readFileSync(filePath, "utf8");
-  const wordCount = content.split(/\s+/).filter(Boolean).length;
-  return { exists: true, content, wordCount, path: filePath };
+function fail(message) {
+  process.stderr.write(`${message}\n`);
+  process.exitCode = 1;
 }
 
-function keyPhrases(content) {
-  const lower = content.toLowerCase();
-  const phrases = [
-    "purpose", "use when", "rules", "output", "required steps",
-    "validation", "enforce", "do not", "completion",
-  ];
-  return phrases.filter((phrase) => lower.includes(phrase));
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
 function main() {
-  const root = process.cwd();
-  const warnings = [];
-  const passes = [];
-
-  for (const skill of SHARED_SKILLS) {
-    const canonical = readSkill(root, CANONICAL_DIR, skill);
-
-    if (!canonical.exists) {
-      warnings.push(`MISSING canonical: ${path.join(CANONICAL_DIR, skill, "SKILL.md")}`);
-      continue;
-    }
-
-    const canonicalPhrases = new Set(keyPhrases(canonical.content));
-
-    for (const ns of NAMESPACES) {
-      const copy = readSkill(root, ns.dir, skill);
-
-      if (!copy.exists) {
-        warnings.push(`MISSING: ${path.join(ns.dir, skill, "SKILL.md")} (canonical exists)`);
-        continue;
-      }
-
-      if (copy.wordCount === 0) {
-        warnings.push(`EMPTY: ${path.join(ns.dir, skill, "SKILL.md")}`);
-        continue;
-      }
-
-      const copyPhrases = new Set(keyPhrases(copy.content));
-      const overlap = [...canonicalPhrases].filter((p) => copyPhrases.has(p));
-      const coverageRatio = canonicalPhrases.size > 0 ? overlap.length / canonicalPhrases.size : 1;
-
-      const wordRatio = canonical.wordCount > 0 ? copy.wordCount / canonical.wordCount : 1;
-
-      if (coverageRatio < 0.4) {
-        warnings.push(
-          `DRIFT: ${path.join(ns.dir, skill, "SKILL.md")} shares only ${Math.round(coverageRatio * 100)}% key phrases with canonical`
-        );
-      } else if (wordRatio < 0.1) {
-        warnings.push(
-          `DRIFT: ${path.join(ns.dir, skill, "SKILL.md")} is only ${copy.wordCount} words vs canonical ${canonical.wordCount}`
-        );
-      } else {
-        passes.push(`OK: ${path.join(ns.dir, skill, "SKILL.md")}`);
-      }
-    }
+  if (!fs.existsSync(contractPath)) {
+    fail("Missing references/agent-standards-contract.json");
+    return;
   }
 
-  process.stdout.write("Agent skill sync check\n");
-  process.stdout.write(`Canonical: ${CANONICAL_DIR}\n`);
-  process.stdout.write(`Skills checked: ${SHARED_SKILLS.join(", ")}\n\n`);
+  const contract = readJson(contractPath);
+  const issues = [];
+  const standards = contract.repositories?.["apt-agent-standards"];
+  const references = new Set(standards?.must_reference || []);
+  const validations = new Set(contract.validation?.["apt-agent-standards"] || []);
+  const governanceRules = contract.governance_rules || [];
 
-  for (const pass of passes) {
-    process.stdout.write(`  ${pass}\n`);
+  for (const required of requiredReferences) {
+    if (!references.has(required)) issues.push(`Missing must_reference entry: ${required}`);
   }
 
-  if (warnings.length) {
-    process.stdout.write("\nWarnings:\n");
-    for (const warning of warnings) {
-      process.stdout.write(`  ${warning}\n`);
-    }
-    process.stdout.write(
-      "\nSync policy: update .github/skills/<name>/SKILL.md first, then sync to .claude/skills/ and .codex/skills/.\n"
-    );
+  for (const command of requiredValidation) {
+    if (!validations.has(command)) issues.push(`Missing apt-agent-standards validation command: ${command}`);
+  }
+
+  if (!governanceRules.some((rule) => rule.includes("Do not merge apt-agent-standards installer"))) {
+    issues.push("Missing governance rule that keeps installer behavior out of apt-principles.");
+  }
+
+  if (!governanceRules.some((rule) => rule.includes("Preserve target-owned docs/project-context.md"))) {
+    issues.push("Missing governance rule that preserves target-owned docs/project-context.md during sync.");
+  }
+
+  process.stdout.write("APT agent standards contract check\n");
+  process.stdout.write(`Contract: ${path.relative(root, contractPath).replaceAll(path.sep, "/")}\n`);
+  process.stdout.write(`Version: ${contract.version || "unknown"}\n\n`);
+
+  if (issues.length > 0) {
+    process.stdout.write("Issues:\n");
+    for (const issue of issues) process.stdout.write(`  - ${issue}\n`);
     process.exitCode = 1;
-  } else {
-    process.stdout.write("\nAll shared skills are within acceptable drift range.\n");
+    return;
   }
+
+  process.stdout.write("PASS: doctrine/distribution ownership contract is present and complete.\n");
+  process.stdout.write("Run cross-tool parity and workspace rollout checks from apt-agent-standards.\n");
 }
 
 try {
   main();
 } catch (error) {
-  process.stderr.write(`${error.message}\n`);
-  process.exitCode = 1;
+  fail(error.message);
 }

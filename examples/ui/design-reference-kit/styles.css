@@ -1,0 +1,17 @@
+/* ============================================================
+   APT — Applied Practical Thinking · Design System
+   Root stylesheet — the single entry point for consuming projects.
+
+   Link this one file and you get the full foundation: color tokens,
+   type scale, spacing/radius/elevation/motion tokens, fonts, and the
+   semantic `.apt-*` element + utility classes.
+
+       <link rel="stylesheet" href="styles.css">
+
+   The per-surface UI-kit stylesheets under ui_kits/<kit>/kit.css are
+   demo recreations, each already @importing these foundations — they
+   are NOT global and are intentionally not folded in here, because
+   they share generic class names (.btn, .card, …) scoped to their own
+   previews. Pull from one kit at a time when building a surface.
+   ============================================================ */
+@import url("./colors_and_type.css");
