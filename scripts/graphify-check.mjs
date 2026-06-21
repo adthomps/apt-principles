@@ -4,16 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { spawnSync } from "node:child_process";
-
-const REQUIRED_REPOS = [
-  "apt-principles",
-  "applied-practical-thinking",
-  "apt-coach",
-  "apt-dream-to-reality",
-  "apt-novel-reviewer",
-  "apt-payment-rpc-api",
-  "crt-world",
-];
+import { DEFAULT_GRAPHIFY_REPOS, graphifyCommand, hasOpenAiPackage } from "./graphify-config.mjs";
 
 function run(command, args) {
   return spawnSync(command, args, {
@@ -21,32 +12,26 @@ function run(command, args) {
   });
 }
 
-function graphifyCommand() {
-  const localBin = process.env.USERPROFILE ? path.join(process.env.USERPROFILE, ".local", "bin", "graphify.exe") : null;
-  return localBin && fs.existsSync(localBin) ? localBin : "graphify";
-}
-
-function hasOpenAiPackage() {
-  const appData = process.env.APPDATA;
-  if (!appData) {
-    return false;
-  }
-
-  return fs.existsSync(path.join(appData, "uv", "tools", "graphifyy", "Lib", "site-packages", "openai"));
-}
-
 function main() {
   const aptPrinciplesRoot = path.resolve(process.cwd());
   const workspaceRoot = path.resolve(aptPrinciplesRoot, "..");
-  const graphify = run(graphifyCommand(), ["--version"]);
-  const missingRepos = REQUIRED_REPOS.filter((repo) => !fs.existsSync(path.join(workspaceRoot, repo)));
+  const graphifyPath = graphifyCommand();
+  const graphify = run(graphifyPath, ["--version"]);
+  const missingRepos = DEFAULT_GRAPHIFY_REPOS.filter((repo) => !fs.existsSync(path.join(workspaceRoot, repo)));
 
   process.stdout.write("APT Graphify readiness check\n");
   process.stdout.write(`Workspace root: ${workspaceRoot}\n`);
-  process.stdout.write(`Repos expected: ${REQUIRED_REPOS.length}\n`);
+  process.stdout.write(`Repos expected: ${DEFAULT_GRAPHIFY_REPOS.length}\n`);
+  process.stdout.write(`Repo set: ${DEFAULT_GRAPHIFY_REPOS.join(", ")}\n`);
 
   if (graphify.status === 0) {
     process.stdout.write(`Graphify: ${graphify.stdout.trim() || "available"}\n`);
+  } else if (fs.existsSync(graphifyPath)) {
+    process.stdout.write(`Graphify: installed but not runnable from this shell (${graphifyPath})\n`);
+    const details = (graphify.stderr || graphify.error?.message || "").trim();
+    if (details) {
+      process.stdout.write(`Graphify detail: ${details}\n`);
+    }
   } else {
     process.stdout.write("Graphify: missing from PATH\n");
     process.stdout.write("Install prerequisites: Python 3.10+, uv, then `uv tool install graphifyy`.\n");

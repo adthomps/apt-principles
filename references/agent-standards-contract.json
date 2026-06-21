@@ -11,6 +11,11 @@
       "owns": [
         "APT doctrine",
         "AI and agent framework",
+        "agent harness standards",
+        "model routing standards",
+        "token efficiency standards",
+        "verification standards",
+        "repository lifecycle standards",
         "review checklists",
         "prompts and examples",
         "reference contracts",
@@ -25,21 +30,32 @@
       ]
     },
     "apt-agent-standards": {
-      "role": "agent standards installer and cross-tool distribution system",
+      "role": "agent harness implementation, standards installer, and cross-tool distribution system",
       "owns": [
+        "agent harness implementation",
+        "agent, skill, and prompt catalogs",
+        "routing docs and model registry",
+        "context packs",
+        "verification and lifecycle reports",
         "installer and sync scripts",
+        "scan and repair scripts",
         "profile manifests",
         "profile detection",
         "source-to-target AI tool path mapping",
+        ".agent-repo target manifests",
         ".agent-standards.json target manifests",
         "Claude, Codex, and GitHub Copilot distribution surfaces",
         "cross-tool parity checks"
       ],
       "must_reference": [
         "apt-principles/ai-agent-framework.md",
+        "apt-principles/standards/ai/agent-harness-standard.md",
+        "apt-principles/standards/ai/model-routing-standard.md",
+        "apt-principles/standards/ai/repository-lifecycle-standard.md",
         "apt-principles/checklists/ai-agent-review-checklist.md",
         "apt-principles/prompts/apt-one-shot-build-prompt.md",
-        "apt-principles/references/ai-review-bundle.json"
+        "apt-principles/references/ai-review-bundle.json",
+        "apt-principles/references/ai-harness-contract.json"
       ]
     }
   },
@@ -96,6 +112,30 @@
       "high-value workflows should maintain cross-tool parity where practical"
     ]
   },
+  "harness_surfaces": {
+    "source_paths": [
+      "agents/",
+      "routing/",
+      "context/",
+      "docs/HARNESS-ARCHITECTURE.md",
+      "docs/AGENT-CATALOG.md",
+      "docs/SKILL-CATALOG.md",
+      "docs/PROMPT-CATALOG.md",
+      "agent-repo.manifest.json",
+      "scripts/install-agent-repo.mjs",
+      "scripts/scan-agent-install.mjs",
+      "scripts/repair-agent-install.mjs",
+      "scripts/sync-agent-repo.mjs",
+      "scripts/validate-model-routing.mjs",
+      "scripts/check-local-models.mjs"
+    ],
+    "rules": [
+      "harness implementation stays in apt-agent-standards",
+      "harness docs and scripts reference apt-principles standards instead of redefining them",
+      "model registry entries are implementation configuration, not doctrine",
+      "lifecycle reports are implementation evidence, not canonical standards"
+    ]
+  },
   "validation": {
     "apt-principles": [
       "npm run validate"
@@ -109,8 +149,9 @@
   },
   "governance_rules": [
     "Do not merge apt-agent-standards installer, profile, or path-mapping behavior into apt-principles.",
+    "Do not merge apt-agent-standards harness agents, routing registries, context packs, lifecycle scripts, or runtime reports into apt-principles.",
     "Update apt-principles first when doctrine, review criteria, or APT lifecycle rules change.",
-    "Update apt-agent-standards when installed agent files, profile composition, or tool-specific distribution behavior must change.",
+    "Update apt-agent-standards when harness implementation, installed agent files, profile composition, lifecycle tooling, or tool-specific distribution behavior must change.",
     "Use dry-run install and sync before applying standards to a real target repository.",
     "Preserve target-owned docs/project-context.md during sync.",
     "Use curated profile selections when auto-detection signals are advisory or noisy.",

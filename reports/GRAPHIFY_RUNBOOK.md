@@ -23,7 +23,7 @@ Graphify complements `npm run validate` and `npm run sweep:project-profiles`. It
 
 ## Governance Recommendation
 
-Use Graphify as a curated knowledge-management layer for APT, not as a replacement for canonical docs, project context, validation scripts, or source-controlled decision records.
+Use Graphify as a knowledge-map and evidence-review layer for APT, not as a replacement for canonical docs, project context, validation scripts, or source-controlled decision records.
 
 APT should keep the Graphify operating workflow in `apt-principles` because this repo owns canonical doctrine, project adoption rules, validation expectations, portfolio-level reports, and cross-repo evidence review. Do not create a separate `apt-graphify-standards` repository unless Graphify becomes an independently versioned product with its own installers, fixtures, release cadence, and compatibility tests.
 
@@ -33,7 +33,7 @@ Ownership summary:
 
 | Area | Owner |
 | --- | --- |
-| APT-wide graph scripts, curated repo set, gap reports, and Graphify runbook | `apt-principles` |
+| APT-wide graph scripts, default repo set, raw gap evidence workflow, and Graphify runbook | `apt-principles` |
 | Optional installed guidance for agents and repo-local graph participation notes | `apt-agent-standards` |
 | Product-specific architecture, sensitive-path exclusions, local project context, and graph exceptions | target repo |
 | Generated graph files, caches, HTML, cost files, and manifests | local operator workspace only |
@@ -56,8 +56,9 @@ When adding a repo to the default graph set, first run `npm run graphify:apt -- 
 This repo now has a lightweight APT-wide Graphify workflow:
 
 - `npm run graphify:check` verifies the local Graphify CLI, required sibling repos, and OpenAI backend readiness.
-- `npm run graphify:apt` stages the selected APT repos in `.graphify-workspace/` and writes local graph output under `graphify-out/`.
-- `npm run graphify:gaps` queries `graphify-out/graph.json` and writes a curated Markdown gap report under `reports/`. It now fails by default when the graph still contains known noisy sources such as runtime artifacts or project-profile sweep outputs.
+- `npm run graphify:apt` stages the selected APT repos in a temporary `apt-graphify-workspace` folder and writes local graph output under `graphify-out/`.
+- `npm run graphify:gaps` queries `graphify-out/graph.json` and writes a local raw traversal evidence report under `reports/`. It fails by default when the graph still contains known noisy sources such as runtime artifacts or project-profile sweep outputs.
+- `npm run graphify:clean` removes local-only graph and staging artifacts.
 - `.gitignore` and `.graphifyignore` keep bulky local graph outputs, caches, manifests, and HTML artifacts out of git.
 
 The local setup also installed `uv`, `graphifyy`, and the Graphify Codex skill. If a fresh terminal cannot find `uv` or `graphify`, add `C:\Users\sanch\.local\bin` to PATH or restart the shell.
@@ -141,6 +142,7 @@ Run these commands from `apt-principles`:
 npm run graphify:check
 npm run graphify:apt
 npm run graphify:gaps
+npm run graphify:clean
 ```
 
 `graphify:check` verifies that `graphify` is on PATH, required sibling repos exist, `OPENAI_API_KEY` is set, and the OpenAI Python package is installed in Graphify's tool environment.
@@ -157,17 +159,32 @@ npm run graphify:apt
 
 Use a model that your OpenAI project can access. OpenAI's model catalog lists `gpt-4o-mini` as a fast, affordable model for focused tasks: https://platform.openai.com/docs/models/gpt-4o-mini
 
-If extraction fails with `rate_limit_exceeded`, rerun the same command after a short wait. For an even gentler run:
+If extraction fails with `rate_limit_exceeded`, check whether the message says `tokens per min (TPM)` or `requests per min (RPM)`. The APT-wide graph usually hits TPM first because each semantic extraction chunk can request thousands of tokens.
+
+OpenAI rate limits are applied at the organization/project level, vary by model, and can be exhausted by whichever limit is reached first: requests per minute, tokens per minute, or daily limits. OpenAI's guidance also notes that failed requests still count toward per-minute limits, so immediately rerunning the same command after a 429 can make the next minute worse. Use a lower token budget, wait for the reset window, or target fewer repos before retrying.
+
+For a gentler run under tight TPM limits:
 
 ```powershell
-npm run graphify:apt -- --max-concurrency 1 --token-budget 12000
+npm run graphify:apt:gentle
 ```
 
-If you have higher limits and want faster extraction:
+For a balanced run:
 
 ```powershell
-npm run graphify:apt -- --max-concurrency 2 --token-budget 20000
+npm run graphify:apt:balanced
 ```
+
+If you have higher limits and want faster extraction, use:
+
+```powershell
+npm run graphify:apt:fast
+```
+
+Useful references:
+
+- OpenAI rate limits guide: https://platform.openai.com/docs/guides/rate-limits
+- OpenAI project limits dashboard: https://platform.openai.com/settings/organization/limits
 
 `graphify:apt` builds a temporary staging folder, `apt-graphify-workspace`, in the system temp directory and includes these repos by default:
 
@@ -190,6 +207,10 @@ npm run graphify:apt -- --stage-only
 npm run graphify:apt -- --no-cluster
 npm run graphify:apt -- --model gpt-4o-mini
 npm run graphify:apt -- --backend openai --max-concurrency 1
+npm run graphify:apt:gentle
+npm run graphify:apt:balanced
+npm run graphify:apt:fast
+npm run graphify:apt:resume
 npm run graphify:apt -- --max-concurrency 1 --token-budget 12000
 npm run graphify:apt -- --repos apt-principles,apt-coach
 npm run graphify:apt -- --workspace-root ../
@@ -229,12 +250,67 @@ npm run graphify:gaps -- --graph graphify-out/graph.json
 
 | Scenario | Recommendation |
 |----------|---------------|
-| Default / safe for CI | `--max-concurrency 1 --token-budget 20000 --model gpt-4o-mini` |
-| Large principle files (>5k tokens each) | `--token-budget 40000` |
-| Faster local extraction | `--max-concurrency 2` (safe on most laptops; keep at 1 for CI) |
+| Default / safe for CI | `npm run graphify:apt` (`--max-concurrency 1 --token-budget 20000 --model gpt-4o-mini`) |
+| Current 200k TPM limit with 429s | `npm run graphify:apt:gentle` (`--max-concurrency 1 --token-budget 8000`) |
+| Balanced local run | `npm run graphify:apt:balanced` (`--max-concurrency 1 --token-budget 12000`) |
+| Large principle files (>5k tokens each) | Increase `--token-budget` only if context-limit splitting is the blocker, not TPM |
+| Faster local extraction with higher limits | `npm run graphify:apt:fast` (`--max-concurrency 2 --token-budget 20000`) |
 | Higher semantic quality (before governance review) | `--model gpt-4o` (costs more; use when relationship extraction quality matters) |
 | Tight API limits / rate errors | `--max-concurrency 1 --token-budget 12000` |
 | Target a subset of repos | `--repos apt-principles,apt-coach` |
+
+Speed and limit strategy:
+
+1. Prefer subset runs during iteration: `npm run graphify:apt:gentle -- --repos apt-principles,apt-agent-standards,applied-practical-thinking`.
+2. Avoid `--force` unless you need a full rebuild; keeping existing `graphify-out/` lets Graphify reuse cached work where possible.
+3. If the error says TPM, lower `--token-budget` or target fewer repos. Increasing concurrency usually makes TPM failures more likely.
+4. If the error says RPM and TPM has headroom, modestly increasing chunk size may help, but keep concurrency low.
+5. For overnight or governance refresh runs, use gentle or balanced settings and let the cache accumulate.
+6. For faster sustained throughput, request higher limits in the OpenAI project limits dashboard or use a model/project with higher TPM.
+
+Do not run multiple `graphify:apt*` commands at the same time unless each command uses a different `--staging-root`. The default staging folder is shared, so concurrent builds can collide while copying files.
+
+## Pause And Resume
+
+If Graphify hits a `429 rate_limit_exceeded` error, the safest resume path is to pause, wait, and rerun without `--force` so existing `graphify-out/` cache can be reused.
+
+Recommended recovery after a TPM error:
+
+1. Wait at least the retry-after window shown by OpenAI. If many chunks failed, wait 60-120 seconds so the TPM window cools down.
+2. Resume with gentle settings and keep existing `graphify-out/cache`.
+3. Generate the local traversal report after extraction finishes.
+
+```powershell
+npm run graphify:apt:resume
+npm run graphify:gaps
+```
+
+If you need to manually stop a long run, press `Ctrl+C`, wait for the command to exit, then resume the same way:
+
+```powershell
+npm run graphify:apt:resume
+```
+
+Important resume rules:
+
+- Do not use `--force` when resuming after limits or manual interruption. `--force` removes `graphify-out/` and throws away reusable extraction cache.
+- Do not run `npm run graphify:clean` before resuming. Cleanup is for intentionally starting over.
+- If the error says TPM, use `graphify:apt:resume`, lower `--token-budget`, or reduce `--repos`.
+- If the error says RPM but TPM has headroom, keep concurrency low and wait before retrying.
+- If the error is model access, missing `OPENAI_API_KEY`, missing Python `openai`, or graph hygiene noise, fix that configuration problem first; resume alone will repeat the same failure.
+- If daily/project quota is exhausted, wait for quota reset or change project/model/limits; local resume cannot bypass quota.
+
+Use a subset resume when only part of the workspace needs refreshing:
+
+```powershell
+npm run graphify:apt:resume -- --repos apt-principles,apt-agent-standards,applied-practical-thinking
+```
+
+Use a full rebuild only after changing staging filters, repo set, or ignore policy:
+
+```powershell
+npm run graphify:apt -- --force
+```
 
 **Why `.claude/` and `MEMORY.md` are excluded from staging:** These contain Claude Code workspace configuration, session hooks, and agent session memory. They are IDE tooling artifacts, not APT doctrine. Including them would pollute the doctrine graph with agent scaffolding and produce misleading relationship edges in gap queries.
 
@@ -244,16 +320,26 @@ Generated graph assets are local operator artifacts:
 
 - `graphify-out/`
 - `.graphify-workspace/`
+- `apt-graphify-workspace/`
 - Graphify cache, cost, manifest, and HTML output
+- raw `reports/graphify-apt-gap-analysis-YYYY-MM-DD.md` traversal reports
 
 Do not commit generated graph artifacts unless the storage policy is explicitly changed.
 
-Commit durable, curated outputs:
+Commit durable source and human-reviewed outputs:
 
 - runbook updates
 - script updates
 - `.graphifyignore` and `.gitignore`
-- dated gap reports under `reports/`
+- curated remediation notes or project-profile findings after human review
+
+To remove local Graphify artifacts:
+
+```powershell
+npm run graphify:clean
+```
+
+The cleanup command removes only `graphify-out/`, legacy `.graphify-workspace/`, optional in-repo `apt-graphify-workspace/`, and the system-temp `apt-graphify-workspace` staging folder.
 
 ## Gap Review Workflow
 

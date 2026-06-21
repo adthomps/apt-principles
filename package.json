@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "graphify:apt": "node scripts/graphify-apt-workspace.mjs",
+    "graphify:apt:balanced": "node scripts/graphify-apt-workspace.mjs --max-concurrency 1 --token-budget 12000",
+    "graphify:apt:fast": "node scripts/graphify-apt-workspace.mjs --max-concurrency 2 --token-budget 20000",
+    "graphify:apt:gentle": "node scripts/graphify-apt-workspace.mjs --max-concurrency 1 --token-budget 8000",
+    "graphify:apt:resume": "node scripts/graphify-apt-workspace.mjs --max-concurrency 1 --token-budget 8000",
     "graphify:check": "node scripts/graphify-check.mjs",
+    "graphify:clean": "node scripts/graphify-clean.mjs",
     "graphify:gaps": "node scripts/graphify-gap-report.mjs",
     "graphify:install-openai": "node scripts/graphify-install-openai.mjs",
     "run-all-checks": "node scripts/run-all-checks.mjs",

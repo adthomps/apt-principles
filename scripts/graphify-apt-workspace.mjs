@@ -4,23 +4,18 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { spawnSync } from "node:child_process";
-
-const DEFAULT_REPOS = [
-  "apt-principles",
-  "apt-agent-standards",
-  "applied-practical-thinking",
-  "apt-coach",
-  "apt-dream-to-reality",
-  "apt-novel-reviewer",
-  "apt-payment-rpc-api",
-  "crt-world",
-];
+import {
+  DEFAULT_GRAPHIFY_REPOS,
+  defaultStagingRoot,
+  graphifyCommand,
+  hasOpenAiPackage,
+} from "./graphify-config.mjs";
 
 function parseArgs(argv) {
   const args = {
     workspaceRoot: null,
     stagingRoot: null,
-    repos: DEFAULT_REPOS,
+    repos: DEFAULT_GRAPHIFY_REPOS,
     backend: "openai",
     model: process.env.GRAPHIFY_OPENAI_MODEL ?? "gpt-4o-mini",
     maxConcurrency: process.env.GRAPHIFY_MAX_CONCURRENCY ?? "1",
@@ -156,11 +151,6 @@ function writeStagingIgnore(sourcePath, targetPath) {
   fs.writeFileSync(targetPath, content.endsWith("\n") ? content : `${content}\n`);
 }
 
-function graphifyCommand() {
-  const localBin = process.env.USERPROFILE ? path.join(process.env.USERPROFILE, ".local", "bin", "graphify.exe") : null;
-  return localBin && fs.existsSync(localBin) ? localBin : "graphify";
-}
-
 function requiredBackendEnv(backend) {
   if (backend === "openai") {
     return "OPENAI_API_KEY";
@@ -180,22 +170,11 @@ function requiredBackendEnv(backend) {
   return null;
 }
 
-function hasOpenAiPackage() {
-  const appData = process.env.APPDATA;
-  if (!appData) {
-    return false;
-  }
-
-  return fs.existsSync(path.join(appData, "uv", "tools", "graphifyy", "Lib", "site-packages", "openai"));
-}
-
 function main() {
   const args = parseArgs(process.argv.slice(2));
   const aptPrinciplesRoot = path.resolve(process.cwd());
   const workspaceRoot = args.workspaceRoot ?? path.resolve(aptPrinciplesRoot, "..");
-  const stagingRoot =
-    args.stagingRoot ??
-    path.join(process.env.TEMP ?? process.env.TMP ?? aptPrinciplesRoot, "apt-graphify-workspace");
+  const stagingRoot = args.stagingRoot ?? defaultStagingRoot(aptPrinciplesRoot);
   const missingRepos = args.repos.filter((repo) => !fs.existsSync(path.join(workspaceRoot, repo)));
 
   if (missingRepos.length) {

@@ -32,10 +32,17 @@ Graphify workspace commands:
 ```bash
 npm run graphify:check
 npm run graphify:apt
+npm run graphify:apt:gentle
+npm run graphify:apt:balanced
+npm run graphify:apt:fast
+npm run graphify:apt:resume
 npm run graphify:gaps
+npm run graphify:clean
 ```
 
-See `reports/GRAPHIFY_RUNBOOK.md` for setup, privacy boundaries, and output policy.
+`graphify:gaps` writes local raw traversal evidence reports that are ignored by default. Commit only human-reviewed remediation notes or project-profile findings.
+
+See `reports/GRAPHIFY_RUNBOOK.md` for setup, privacy boundaries, output policy, noisy-graph handling, and cleanup.
 
 ## CLI Options
 

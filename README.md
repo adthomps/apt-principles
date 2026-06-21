@@ -18,7 +18,7 @@ APT docs are maintained in three active layers:
 
 `apt-principles` owns the canonical APT source of truth. `applied-practical-thinking` owns the public APT portfolio, demo, learning, and showcase experience. The public APT Principles view should pull from this folder instead of maintaining a separate doctrine copy.
 
-`apt-agent-standards` is a separate installer and distribution system for applying APT-aligned AI agent standards across projects. It owns profile detection, install/sync scripts, `.agent-standards.json` manifests, and tool-native Claude, Codex, and GitHub Copilot file layouts. It should reference this repository for canonical doctrine instead of becoming a competing source of APT principles.
+`apt-agent-standards` is the separate agent harness implementation, installer, and distribution system for applying APT-aligned AI agent standards across projects. It owns harness agents, routing docs, context packs, lifecycle scripts, profile detection, install/sync/scan/repair behavior, `.agent-standards.json` and `.agent-repo/` manifests, and tool-native Claude, Codex, and GitHub Copilot file layouts. It should reference this repository for canonical doctrine instead of becoming a competing source of APT principles.
 
 Historical source/reference material has been saved outside this active package. Do not use external historical files as canonical guidance unless an active doc explicitly points to them.
 
@@ -57,9 +57,9 @@ This repo owns APT AI doctrine, review criteria, prompts, examples, and referenc
 | Repository | Responsibility |
 |------------|----------------|
 | `apt-principles` | Canonical APT doctrine, checklists, prompts, examples, references, project adoption rules, and validation expectations |
-| `apt-agent-standards` | Cross-project installer, profile manifests, source-to-target AI tool path mapping, `.agent-standards.json`, dry-run install/sync, and tool parity checks |
+| `apt-agent-standards` | Agent harness implementation, cross-project installer, profile manifests, routing/context packs, lifecycle scripts, source-to-target AI tool path mapping, `.agent-standards.json`, `.agent-repo/`, dry-run install/sync/scan/repair, and tool parity checks |
 
-Do not merge installer, profile, or path-mapping behavior into `apt-principles`. Reusable doctrine improvements discovered through installed agent standards should come back here as doctrine/build-kit/reference updates. Distribution changes should stay in `apt-agent-standards`.
+Do not merge harness agents, model registries, installer, profile, lifecycle script, runtime report, or path-mapping behavior into `apt-principles`. Reusable doctrine improvements discovered through installed agent standards should come back here as doctrine/build-kit/reference updates. Harness implementation and distribution changes should stay in `apt-agent-standards`.
 
 Portable contract: `references/agent-standards-contract.json`.
 
@@ -79,7 +79,7 @@ The `.github/` directory contains the **active AI configuration for apt-principl
 
 ### Cross-tool distribution
 
-Claude, Codex, and GitHub Copilot target files for downstream repositories are distributed by the sibling `apt-agent-standards` repository. Use that package for `.claude/`, `.codex/`, `.github/`, `AGENTS.md`, `.agent-standards.json`, profile detection, dry-run install, and sync behavior.
+Claude, Codex, and GitHub Copilot target files for downstream repositories are distributed by the sibling `apt-agent-standards` repository. Use that package for `.claude/`, `.codex/`, `.github/`, `AGENTS.md`, `.agent-standards.json`, `.agent-repo/`, profile detection, dry-run install, scan, repair, and sync behavior.
 
 Run its checks from `apt-agent-standards`:
 

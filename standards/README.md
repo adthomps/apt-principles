@@ -1,7 +1,7 @@
 ---
 title: APT Standards Index
 version: v1
-last_updated: 2026-05-31
+last_updated: 2026-06-21
 owner: APT
 status: stable
 ---
@@ -14,6 +14,14 @@ This directory contains domain-specific standards that extend the canonical prin
 
 | Domain | File | Canonical Source |
 |--------|------|----------------|
+| AI agent harness | [ai/agent-harness-standard.md](ai/agent-harness-standard.md) | `ai-agent-framework.md` |
+| AI orchestration | [ai/ai-orchestration-standard.md](ai/ai-orchestration-standard.md) | `ai-agent-framework.md` |
+| Model routing | [ai/model-routing-standard.md](ai/model-routing-standard.md) | `ai-agent-framework.md` |
+| Token efficiency | [ai/token-efficiency-standard.md](ai/token-efficiency-standard.md) | `ai-agent-framework.md`, `knowledge-system.md` |
+| AI verification | [ai/verification-standard.md](ai/verification-standard.md) | `ai-agent-framework.md`, `quality-testing.md` |
+| Local-first AI | [ai/local-first-ai-standard.md](ai/local-first-ai-standard.md) | `ai-agent-framework.md` |
+| Security harness | [ai/security-harness-standard.md](ai/security-harness-standard.md) | `security.md`, `ai-agent-framework.md` |
+| Repository lifecycle | [ai/repository-lifecycle-standard.md](ai/repository-lifecycle-standard.md) | `ai-agent-framework.md`, `knowledge-system.md` |
 | API | [api/api-standards.md](api/api-standards.md) | `system-standards.md` |
 | Coding | [coding/coding-standards.md](coding/coding-standards.md) | `system-standards.md`, `execution.md` |
 | Data | [data/data-standards.md](data/data-standards.md) | `system-standards.md` |
@@ -26,3 +34,5 @@ This directory contains domain-specific standards that extend the canonical prin
 These standards are specific, enforceable rule sets. The canonical docs (`system-standards.md`, `quality-testing.md`, etc.) contain the principles and reasoning. Standards files contain the rules in their most actionable form.
 
 When a standard conflicts with a canonical doc, the canonical doc takes precedence.
+
+AI standards use the same relationship. `ai-agent-framework.md` is the canonical hub for AI doctrine; `standards/ai/` contains enforceable rules for harness design, orchestration, routing, token efficiency, verification, local-first execution, security harnesses, and repository lifecycle management. Implementation-specific routing tables, installer behavior, and tool-native file distribution belong in downstream systems such as APT Agent or `apt-agent-standards`, not in this standards directory.

@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { spawnSync } from "node:child_process";
+import { graphifyCommand, NOISY_GRAPH_SOURCES } from "./graphify-config.mjs";
 
 const QUERIES = [
   {
@@ -35,11 +36,6 @@ const QUERIES = [
     prompt: "Which principle and enforcement clusters in apt-principles are most completely linked for AI agent traversal? Identify the 3-5 strongest doctrine-to-enforcement chains an AI agent could follow to answer framework coverage questions, and note which layers lack sufficient cross-reference density for confident AI-assisted review.",
   },
 ];
-
-function graphifyCommand() {
-  const localBin = process.env.USERPROFILE ? path.join(process.env.USERPROFILE, ".local", "bin", "graphify.exe") : null;
-  return localBin && fs.existsSync(localBin) ? localBin : "graphify";
-}
 
 function parseArgs(argv) {
   const args = {
@@ -97,16 +93,7 @@ function latestSweepSummary(reportsDir) {
 
 function graphHygieneWarnings(graphPath) {
   const content = fs.readFileSync(graphPath, "utf8");
-  const noisySources = [
-    "playwright-cli/",
-    ".wrangler/",
-    "output/playwright/",
-    "apps/web/public/docs/apt/",
-    "docs/apt/reports/static/",
-    "project-profile-validation-sweep-",
-  ];
-
-  return noisySources.filter((source) => content.includes(source));
+  return NOISY_GRAPH_SOURCES.filter((source) => content.includes(source));
 }
 
 function main() {

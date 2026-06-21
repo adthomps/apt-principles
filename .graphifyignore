@@ -42,3 +42,4 @@ graphify-out/cost.json
 graphify-out/manifest.json
 graphify-out/*.html
 .graphify-workspace/
+apt-graphify-workspace/
