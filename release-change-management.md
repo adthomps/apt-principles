@@ -66,6 +66,11 @@ Support needs known issues, rollback notes, and user-facing behavior changes.
 - Support handoff notes
 - Known issue and residual risk notes
 - Source and version reference for doctrine, generated docs, or copied assets
+- Release decomposition and readiness evidence from the Working Backwards package when the change is product-facing or operationally risky
+
+## Working Backwards Release Readiness
+
+Release decomposition turns the approved package into meaningful slices that can be validated independently. Readiness should cover quality, security, operations, support, docs, telemetry, rollback, and outcome measurement before production promotion.
 
 ## Good Example
 

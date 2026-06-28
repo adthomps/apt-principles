@@ -1,7 +1,7 @@
 ---
 title: APT Examples
 version: v1
-last_updated: 2026-05-31
+last_updated: 2026-06-22
 owner: APT
 status: draft
 ---
@@ -23,6 +23,7 @@ Use examples when a principle needs a reusable pattern, sample contract, state m
 - `projects/` - real APT project profiles and showcase patterns
 - `quality/` - validation plans, validation matrices, and evidence patterns
 - `security/` - auth, sessions, MFA, trust boundaries, and threat review
+- `showcases/` - reusable applied patterns for downstream repo alignment and public examples
 - `thinking/` - problem framing, outcome evidence, and decision clarity
 - `ui/` - layout and interaction patterns
 - `workflows/` - spec, delivery increment, preview, release, and operations flows

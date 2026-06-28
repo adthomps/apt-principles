@@ -21,6 +21,9 @@ Run it before a UI change is merged or before a public page becomes a showcase e
 - [ ] Interaction patterns reuse existing APT patterns.
 - [ ] New controls, navigation, disclosure, feedback, and technical-content elements reuse the established primitive families before introducing new UI shapes.
 - [ ] Visual styling uses tokens and approved components.
+- [ ] React, TypeScript, and Tailwind UI uses shadcn/ui as the default repo-owned component foundation unless VPDS or another approved enterprise design system is required.
+- [ ] Existing component structure, `components.json`, aliases, Tailwind configuration, global CSS tokens, and installed primitives were inspected before adding shadcn components.
+- [ ] shadcn primitives are composed or adapted in `components/ui`, reusable Apt-prefixed wrappers live in `components/apt`, and product workflow blocks live in `components/blocks`.
 - [ ] Typography uses Inter or the approved system fallback for UI/prose and IBM Plex Mono for code, token values, CLI examples, and technical snippets.
 - [ ] Iconography uses Lucide-style outline icons or the approved AptEmblem pattern; product chrome does not use emoji as decoration.
 - [ ] Primary actions, links, focus rings, and high-frequency action emphasis use the blue primary/action role.
@@ -44,6 +47,7 @@ Run it before a UI change is merged or before a public page becomes a showcase e
 
 - Happy-path-only design.
 - One-off colors, spacing, or component behavior.
+- One-off shadcn additions that ignore existing primitives, wrappers, blocks, aliases, tokens, or enterprise design-system constraints.
 - Unclear color hierarchy between primary action, secondary action, navigation, selection, and status.
 - Teal used as the default CTA color without an approved brand decision.
 - Danger, warning, or success colors used as decoration instead of semantic feedback.
@@ -64,6 +68,7 @@ Run it before a UI change is merged or before a public page becomes a showcase e
 - Screenshots or preview notes when visual.
 - Acceptance criteria.
 - Token/component notes for navigation, actions, status, selection, focus, hover, and disabled color roles.
+- shadcn/component-layer notes covering primitives, Apt wrappers, product blocks, registry source, and exceptions.
 - Primitive inventory for new or changed controls, disclosure, feedback, navigation, and technical-content elements.
 - Chart semantics and color-role notes when data visualization is present.
 - Surface-pattern notes for docs, content, product, account, dashboard, or email flows.

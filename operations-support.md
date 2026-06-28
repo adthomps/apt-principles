@@ -68,6 +68,7 @@ Errors should be actionable without leaking sensitive implementation detail.
 - Support-facing explanation of user-visible errors
 - Degraded-mode and fallback behavior for critical workflows
 - Incident-to-learning follow-up path
+- Telemetry plan for Working Backwards packages that names adoption, usage, failure, support, and outcome signals when relevant
 
 ## Minimum Telemetry Shape
 
@@ -84,6 +85,10 @@ Errors should be actionable without leaking sensitive implementation detail.
   "timestamp": "2026-04-24T12:00:00Z"
 }
 ```
+
+## Working Backwards Telemetry
+
+Telemetry should be planned before release, not after success becomes hard to explain. A Working Backwards package should name which events prove adoption, usage, satisfaction or love, and revenue or business value. Critical workflows should also identify failure and degraded states so support can connect user reports to operational evidence.
 
 ## Good Example
 

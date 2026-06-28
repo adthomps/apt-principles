@@ -82,6 +82,8 @@ Canonical doctrine uses `knowledge-system` for this layer. Public routes may use
 - Decision records
 - Project profiles
 - Release notes
+- Working Backwards packages
+- Outcome trackers
 
 ## Runtime Knowledge Contracts
 
@@ -104,6 +106,10 @@ support finding or incident
 -> record validation or review evidence
 -> link the learning from the next release or project profile update
 ```
+
+## Working Backwards Learning Loop
+
+Outcome trackers convert shipped work into reusable knowledge. A Working Backwards package should define adoption, usage, love or satisfaction, and revenue or business-value signals before release. After release, those results should update docs, examples, tests, runbooks, decisions, or the project profile.
 
 ## Good Example
 

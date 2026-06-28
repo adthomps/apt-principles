@@ -115,6 +115,7 @@ When local tools, local models, or repo-local analysis can complete the work saf
 - Context pack or source index for repeated agent work
 - Verification evidence for AI-generated or AI-assisted changes
 - Repository lifecycle evidence when standards are installed, synced, repaired, or upgraded
+- Approved Working Backwards package when an AI agent is asked to implement product work from press release, FAQ, PRD, release, readiness, telemetry, or outcome artifacts
 
 ## Agent Contract
 
@@ -130,6 +131,8 @@ Every durable agent prompt should define:
 - escalation conditions
 
 Health, fitness, biometric, finance, legal, safety, and other high-stakes or high-confidence-risk domains require stricter contracts. Prompts in those areas must name the data boundary, identify whether guidance is informational or professional advice, define referral/escalation conditions, and preserve a deterministic fallback when AI refinement fails.
+
+When a Working Backwards package is present, agent prompts should include the package status, approved source artifact IDs, open items, blockers, validation commands, telemetry requirements, readiness gates, outcome measures, and forbidden actions. Agents should pause instead of implementing from missing, stale, blocked, or unapproved package artifacts.
 
 ## Review Bundle Standard
 

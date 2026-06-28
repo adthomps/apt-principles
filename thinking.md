@@ -68,6 +68,12 @@ Define what success looks like before build work begins.
 - Baseline and target outcome evidence
 - Out-of-scope notes for tempting but deferred work
 
+## Working Backwards Package
+
+For product and feature work, a Working Backwards package is an APT-compatible way to make intent reviewable before implementation. The press release captures the customer, problem, desired outcome, and why the work matters before a feature list or technical solution is accepted.
+
+External FAQ answers customer, buyer, adopter, workflow, trust, cost, and support questions. Internal FAQ answers engineering, operations, security, legal/compliance, business, and ownership questions. Open items are allowed only when they are visible, owned, and carried forward into requirements or readiness decisions.
+
 ## Good Example
 
 Before building a review dashboard, define the actual outcome:

@@ -57,6 +57,24 @@ Predictable interaction patterns reduce cognitive load and implementation drift.
 - Public APT surfaces should use the full APT design system unless a project has an approved brand layer.
 - Critical design lint failures block promotion unless a decision record accepts the exception.
 
+## UI Component Implementation Standard
+
+For APT-aligned React, TypeScript, and Tailwind projects, shadcn/ui is the default UI implementation foundation unless the project requires VPDS or another approved enterprise design system.
+
+shadcn/ui should be treated as repo-owned source code, a composable UI pattern system, a registry-based distribution model, and an agent-friendly way to apply consistent UI across repositories. Components installed from shadcn are owned by the repo and may be modified to fit APT tokens, naming, accessibility, and product workflow needs.
+
+Use a layered component model:
+
+- `components/ui` for shadcn primitives.
+- `components/apt` for reusable Apt-prefixed wrappers.
+- `components/blocks` for product, domain, and workflow blocks.
+
+Agents and implementers must inspect existing structure, installed components, `components.json`, aliases, Tailwind configuration, global CSS tokens, and enterprise design-system requirements before adding shadcn components. Reuse existing primitives and wrappers before creating one-off UI.
+
+Preserve accessibility, keyboard behavior, focus states, semantic structure, ARIA behavior, design tokens, CSS variables, Tailwind utilities, and APT naming conventions when adapting primitives.
+
+Do not use shadcn/ui when the project is not React/Tailwind, when VPDS or another enterprise design system is mandatory, when transactional email constraints apply, or when a simpler static surface does not need component infrastructure.
+
 ## Baseline Visual Language
 
 - Dark-first background with deep navy/cosmic tones.
@@ -129,6 +147,12 @@ The APT design system covers:
 - accessibility expectations for contrast, focus, keyboard use, reduced motion, and readable text wrapping
 
 Token and lint contracts live in `references/design-tokens.json` and `references/design-lint-gates.json`.
+
+## Working Backwards Design Artifacts
+
+Demo/mock artifacts and end-user docs are design evidence, not polish. A demo or mock should test whether the intended user can understand the offer, workflow, states, and recovery path before implementation hardens the wrong interaction.
+
+End-user docs should describe how the target user starts, succeeds, recovers, and gets support. When demo/mock evidence is deferred, the reason and risk should be visible in the Working Backwards package.
 
 ## Brand, Background, and Iconography
 

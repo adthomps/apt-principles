@@ -65,6 +65,13 @@ Build, test, validation, docs sync, and deployment checks should be repeatable.
 - Validation evidence
 - Release note or changelog entry when user-facing behavior changes
 - Increment plan with owner, dependencies, stop condition, and validation command
+- Working Backwards package for product work that needs press release, FAQ, PRD, release decomposition, readiness, telemetry, and outcome evidence before build handoff
+
+## Working Backwards To Build
+
+When a Working Backwards package is available, implementation should be driven from approved artifacts in this order: press release, external FAQ, internal FAQ, demo/mock evidence, end-user docs, telemetry plan, requirements/PRD, release decomposition, readiness checklist, outcome tracker, and what-to-build handoff.
+
+AI agents and engineers should pause when required package artifacts are missing, stale, blocked, or deferred without a reason. Release decomposition should convert the package into small slices with input artifact, output artifact, validation evidence, and stop condition.
 
 ## Good Example
 

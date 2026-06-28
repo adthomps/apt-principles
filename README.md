@@ -1,7 +1,7 @@
 ---
 title: APT Docs Index
 version: v1
-last_updated: 2026-05-31
+last_updated: 2026-06-22
 owner: APT
 status: draft
 ---
@@ -10,15 +10,16 @@ status: draft
 
 This directory is the canonical doctrine and build kit for APT (Applied Practical Thinking).
 
-APT docs are maintained in three active layers:
+APT docs are maintained in four active layers:
 
 1. **Doctrine** - the principles, standards, and operating model.
 2. **Build kit** - checklists, examples, prompts, and templates that help humans and AI agents apply the doctrine.
-3. **References** - portable machine-readable contracts that projects and public sites can consume.
+3. **Context packs** - curated source maps that help humans and agents load the right APT material for downstream work.
+4. **References** - portable machine-readable contracts that projects and public sites can consume.
 
 `apt-principles` owns the canonical APT source of truth. `applied-practical-thinking` owns the public APT portfolio, demo, learning, and showcase experience. The public APT Principles view should pull from this folder instead of maintaining a separate doctrine copy.
 
-`apt-agent-standards` is the separate agent harness implementation, installer, and distribution system for applying APT-aligned AI agent standards across projects. It owns harness agents, routing docs, context packs, lifecycle scripts, profile detection, install/sync/scan/repair behavior, `.agent-standards.json` and `.agent-repo/` manifests, and tool-native Claude, Codex, and GitHub Copilot file layouts. It should reference this repository for canonical doctrine instead of becoming a competing source of APT principles.
+`apt-agent-standards` is the separate agent harness implementation, installer, and distribution system for applying APT-aligned AI agent standards across projects. It owns harness agents, routing docs, generated or runtime context packs, lifecycle scripts, profile detection, install/sync/scan/repair behavior, `.agent-standards.json` and `.agent-repo/` manifests, and tool-native Claude, Codex, and GitHub Copilot file layouts. It should reference this repository for canonical doctrine and source-pack guidance instead of becoming a competing source of APT principles.
 
 Historical source/reference material has been saved outside this active package. Do not use external historical files as canonical guidance unless an active doc explicitly points to them.
 
@@ -45,6 +46,7 @@ Root Markdown files are intentional. They are the canonical human-readable APT d
 - `prompts/` - reusable AI prompts aligned to APT doctrine
 - `templates/` - starting structures for new docs, examples, checklists, and prompts
 - `references/` - JSON contracts for tokens, review bundles, architecture maps, knowledge schemas, metadata/versioning, and project profiles
+- `context-packs/` - curated source maps for downstream repo alignment and optional context compression workflows
 
 ## AI Configuration
 
@@ -57,7 +59,7 @@ This repo owns APT AI doctrine, review criteria, prompts, examples, and referenc
 | Repository | Responsibility |
 |------------|----------------|
 | `apt-principles` | Canonical APT doctrine, checklists, prompts, examples, references, project adoption rules, and validation expectations |
-| `apt-agent-standards` | Agent harness implementation, cross-project installer, profile manifests, routing/context packs, lifecycle scripts, source-to-target AI tool path mapping, `.agent-standards.json`, `.agent-repo/`, dry-run install/sync/scan/repair, and tool parity checks |
+| `apt-agent-standards` | Agent harness implementation, cross-project installer, profile manifests, routing docs, generated/runtime context packs, lifecycle scripts, source-to-target AI tool path mapping, `.agent-standards.json`, `.agent-repo/`, dry-run install/sync/scan/repair, and tool parity checks |
 
 Do not merge harness agents, model registries, installer, profile, lifecycle script, runtime report, or path-mapping behavior into `apt-principles`. Reusable doctrine improvements discovered through installed agent standards should come back here as doctrine/build-kit/reference updates. Harness implementation and distribution changes should stay in `apt-agent-standards`.
 
@@ -123,6 +125,7 @@ The active structure is deliberate:
 
 - `apt-principles/*.md` — canonical doctrine files.
 - `checklists/` — gates for review, release, adoption, quality, and operational readiness.
+- `context-packs/` — curated source-pack guidance for downstream alignment and optional compression workflows.
 - `examples/` — applied patterns and real project profile examples.
 - `prompts/` — reusable AI, agent, and operator prompts.
 - `references/` — machine-readable contracts for projects and public-site consumers.
@@ -161,6 +164,26 @@ docs/apt/
 Projects should document local decisions and exceptions instead of casually forking doctrine. Reusable improvements should come back to `apt-principles`.
 
 Real APT examples include `apt-coach`, `apt-dream-to-reality`, `apt-novel-reviewer`, `apt-payment-rpc-api`, `crt-world`, and future APT projects.
+
+## Downstream Application Model
+
+APT can be applied to different repository types without copying the whole doctrine tree. Start by classifying the target repo, select the applicable context packs, run the required checks against exact target files, then record mandatory gaps separately from recommended improvements.
+
+Portable machine-readable mapping: `references/apt-application-model.json`.
+
+| Repo Type | Applicable APT Packs | Required Checks | Suggested Examples |
+|-----------|----------------------|-----------------|--------------------|
+| React/Vite UI app | `apt-core-pack`, `apt-ui-pack`, `apt-docs-pack` | `design-review-checklist`, `quality-testing-checklist`, `repo-alignment-checklist` | `examples/showcases/intent-based-ui-navigation.md`, `examples/ui/navigation-layout-pattern.md`, `examples/ui/dashboard-layout-pattern.md` |
+| Cloudflare Worker / Hono API | `apt-core-pack`, `apt-cloudflare-pack`, `apt-api-pack`, `apt-security-pack` | `architecture-review-checklist`, `api-standards-checklist`, `security-review-checklist`, `operations-support-checklist` | `examples/showcases/cloudflare-worker-hono-structure.md`, `examples/architecture/cloudflare-pages-workers-example.md`, `examples/showcases/api-route-design.md` |
+| Documentation site | `apt-core-pack`, `apt-docs-pack`, `apt-ui-pack` | `documentation-checklist`, `knowledge-system-checklist`, `release-readiness-checklist` | `examples/showcases/documentation-structure.md`, `examples/ui/docs-principles-browser-pattern.md`, `examples/knowledge/canonical-doc-update-example.md` |
+| Payment/API gateway | `apt-core-pack`, `apt-api-pack`, `apt-security-pack`, `apt-cloudflare-pack` | `api-standards-checklist`, `security-review-checklist`, `quality-testing-checklist`, `release-readiness-checklist` | `examples/showcases/api-route-design.md`, `examples/showcases/security-review-expectations.md`, `examples/api/error-response-example.md` |
+| Agent/instructions repository | `apt-core-pack`, `apt-agent-pack`, `apt-docs-pack`, `apt-security-pack` | `ai-agent-review-checklist`, `repo-alignment-checklist`, `documentation-checklist` | `examples/showcases/agent-instruction-structure.md`, `examples/ai-agent/agent-prompt-contract-example.md`, `examples/ai-agent/token-efficient-context-pack-example.md` |
+| Mixed full-stack app | `apt-core-pack`, `apt-ui-pack`, `apt-api-pack`, `apt-security-pack`, `apt-docs-pack` | `repo-alignment-checklist`, `design-review-checklist`, `api-standards-checklist`, `security-review-checklist`, `quality-testing-checklist` | `examples/showcases/intent-based-ui-navigation.md`, `examples/showcases/api-route-design.md`, `examples/showcases/security-review-expectations.md` |
+| Prototype or Lovable-generated app | `apt-core-pack`, `apt-ui-pack`, `apt-docs-pack` | `repo-alignment-checklist`, `design-review-checklist`, `documentation-checklist` | `examples/showcases/intent-based-ui-navigation.md`, `examples/showcases/documentation-structure.md`, `examples/ui/product-portfolio-surface-pattern.md` |
+
+Mandatory artifacts usually include source-of-truth links, exact file evidence, relevant checklist results, validation commands, local decisions or exceptions, and security review evidence when trust boundaries are involved. Recommended artifacts include context-pack summaries, showcase notes, project profiles, diagrams, and public presentation copy.
+
+Context packs are source maps, not generated caches. Headroom or similar tools may compress packs for discovery, planning, summarization, and cross-repo alignment. Compression is not enough for security, compliance, payment handling, final validation, or exact code edits; agents must read the exact canonical and target files before making those claims or changes.
 
 ## Public Publish Sync (Applied Practical Thinking)
 
@@ -282,9 +305,10 @@ This runs canonical validation, the workspace sweep, and selected sibling repo `
 4. Put detailed reference cases in `examples/`.
 5. Put validation gates in `checklists/`.
 6. Put reusable AI instructions in `prompts/`.
-7. Put portable machine-readable contracts in `references/`.
-8. Keep `package.json` at the root so validation remains portable.
-9. Keep historical exports outside the active package unless they are intentionally reintroduced as canonical or reference material.
+7. Put source-pack guidance in `context-packs/`.
+8. Put portable machine-readable contracts in `references/`.
+9. Keep `package.json` at the root so validation remains portable.
+10. Keep historical exports outside the active package unless they are intentionally reintroduced as canonical or reference material.
 
 ## What Good Looks Like
 
@@ -300,6 +324,6 @@ A good APT doc:
 
 Older one-shots, generated guides, Lovable themes, Copilot prompts, and source references were useful during consolidation, but they are no longer part of the active package.
 
-Historical material may be harvested again later, but active guidance must live in the canonical doctrine files, build-kit folders, or references folder.
+Historical material may be harvested again later, but active guidance must live in the canonical doctrine files, build-kit folders, context packs, or references folder.
 
 `apt-principles-framework-audit.md` stays top-level while the framework is still being consolidated. When the framework stabilizes, it may move to a future `reports/` pattern or external historical export with a validator update.
