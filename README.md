@@ -8,6 +8,13 @@ status: draft
 
 # APT Principles
 
+> **Frozen historical mirror (2026-06-28).** This repository accepts no active
+> development. Maintainers use the private
+> [`apt-principles-agents`](https://github.com/adthomps/apt-principles-agents)
+> repository; public readers should use the generated
+> [APT documentation](https://appliedpracticalthinking.com/docs/apt/README.md).
+> See [ARCHIVED.md](ARCHIVED.md) for preservation and support details.
+
 This directory is the canonical doctrine and build kit for APT (Applied Practical Thinking).
 
 APT docs are maintained in four active layers:
